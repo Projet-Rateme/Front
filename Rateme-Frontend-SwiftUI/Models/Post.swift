@@ -13,4 +13,5 @@ struct Post: Decodable {
     let content: String
     let user: User
     var liked: Bool
+    var likes: [String]
 }

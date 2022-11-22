@@ -14,7 +14,7 @@ struct ContentView: View {
         if loginVM.isAuthenticated {
             HomeView()
         } else {
-            LoginView()
+            WelcomeView()
         }
     }
 }

@@ -47,8 +47,16 @@ struct WelcomeView: View {
                             
                             HStack {
                                 Text("New around here? ")
-                                Text("Sign in")
-                                    .foregroundColor(Color("PrimaryColor"))
+                                NavigationLink(
+                                    destination: RegisterView().navigationBarHidden(true),
+                                    label: {
+                                        Text("Sign up")
+                                            .font(.title3)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(Color("PrimaryColor"))
+                                    })
+                                    .navigationBarHidden(true)
+                                        
                             }
                         }
                         .padding()

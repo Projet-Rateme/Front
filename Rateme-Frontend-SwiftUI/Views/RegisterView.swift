@@ -1,19 +1,19 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  Rateme-Frontend-SwiftUI
 //
-//  Created by Chawki Ferroukhi on 19/11/2022.
+//  Created by Chawki Ferroukhi on 22/11/2022.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct RegisterView: View {
     var body: some View {
-            loginHeading()
+            registerHeading()
         }
     }
 
-struct loginHeading: View {
+struct registerHeading: View {
     @State private var email: String = "" // by default it's empty
     
     @ObservedObject var loginVM = loginViewModel()
@@ -34,23 +34,15 @@ struct loginHeading: View {
                             .padding(.bottom, 30)
                             .foregroundColor(.white)
                         
-                        SocalLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "apple")), text: Text("Sign in with Apple"))
-                        
-                        SocalLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "google")), text: Text("Sign in with Google"))
+                        TextField("FullName", text: $loginVM.email)
+                            .font(.title3)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white)
+                            .cornerRadius(50.0)
+                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                             .padding(.vertical)
-                        
-                        Divider()
-                            .frame(height: 1)
-                            .overlay(.gray)
-                            .padding(.top, 30)
-                        
-                        Text("Or login using email")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .padding(.top, 10)
-                            .foregroundColor(.white)
-                        
-                        TextField("Email Adress", text: $loginVM.email)
+                        TextField("Email Adresse", text: $loginVM.email)
                             .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -67,11 +59,13 @@ struct loginHeading: View {
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                             .padding(.vertical)
                         
+                        Spacer()
+                        
                         Button(action: {
                             loginVM.login()
                             print($loginVM.isAuthenticated)
                         }) {
-                            Text("Sign in")
+                            Text("Sign up")
                                 .font(.title3)
                                 .foregroundColor(.white)
                                 
@@ -82,16 +76,6 @@ struct loginHeading: View {
                         
                     }
                     
-                    Spacer()
-                    Spacer()
-                    Text("You are completely safe.")
-                        .font(.headline)
-                        .foregroundColor(Color("PrimaryColor"))
-                    Text("Read our Terms & Conditions.")
-                        .foregroundColor(Color("PrimaryColor"))
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    Spacer()
                     
                 }
                 .padding()
@@ -99,31 +83,35 @@ struct loginHeading: View {
         }
     }
 
-struct SocalLoginButton: View {
-    var image: Image
-    var text: Text
+/*extension RegisterView {
     
-    var body: some View {
-        HStack {
-            Spacer()
-            image
-            text
-                .font(.title2)
-                .foregroundColor(.white)
-            Spacer()
+    func register(email: String, password: String, fullName: String) {
+        
+        guard let url = URL(string: "http://127.0.0.1:3000/register") else {
+            return
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color("PrimaryColor"))
-        .cornerRadius(50.0)
-        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
+                    DispatchQueue.main.async {
+                        self.postliked = decodedResponse
+                    }
+                }
+            }
+        }.resume()
+        
+        
+        
+        
     }
-}
+    
+}*/
 
-
-
-struct LoginView_Previews: PreviewProvider {
+struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        RegisterView()
     }
 }

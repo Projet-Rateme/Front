@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @State private var userdata = [User]()
     @State private var postdata = [Post]()
+    @State private var email = UserDefaults.standard.string(forKey: "email")
     
     var body: some View {
             NavigationView {
@@ -20,8 +21,9 @@ struct HomeView: View {
                             VStack {
                                 ScrollView(.horizontal,showsIndicators: false) {
                                     HStack {
+                                        CurrentUserStoryView()
                                         ForEach(userdata,id: \._id) { user in
-                                            StoriesView(user: user)
+                                            UsersStoryView(user: user)
                                         }
                                     }
                                 }
@@ -32,7 +34,8 @@ struct HomeView: View {
                                 }
                                 
                             }
-                            .padding(.leading, -12)
+                            .padding(.leading, -15)
+                            .padding(.trailing, -15)
                         }
                     }.onAppear{
                         getUsers()
@@ -50,14 +53,14 @@ struct HomeView: View {
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                         .tabItem {
                             Image(systemName: "bookmark.circle.fill")
-                            Text("Bookmark")
+                            Text("Reels")
                         }
                     
                     Text("Video Tab")
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                         .tabItem {
                             Image(systemName: "video.circle.fill")
-                            Text("Video")
+                            Text("Photos")
                         }
                     
                     Text("Profile Tab")
@@ -73,23 +76,42 @@ struct HomeView: View {
     }
 }
 
-struct StoriesView: View {
-    let user: User
+struct CurrentUserStoryView: View {
+    @AppStorage("email") private var email = ""
     var body: some View {
             VStack {
                 ZStack(alignment: .bottomTrailing) {
                     Image("AvatarBig")
                     Image("Add")
                 }
-                Text(user.name)
-                    .font(Font.system(size: 13.5))
+                Text(email)
+                    .scaledToFill()
+                    .font(Font.system(size: 12.5))
+                    .padding(.top, 4)
                 }.padding(.trailing, 12)
     }
+}
+
+struct UsersStoryView : View {
+    let user: User
+    var body: some View {
+        VStack {
+            ZStack {
+                Image("Border")
+                Image("AvatarBig1")
+            }
+            Text(user.name)
+                .scaledToFill()
+                .font(Font.system(size: 12.5))
+            }.padding(.trailing, 12)
+    }
+    
 }
 
 struct PostCell: View {
     
     @State private var postliked = [Post]()
+    @State private var postlikes = [User]()
     var post: Post
     @State var liked : Bool = false
     
@@ -108,17 +130,20 @@ struct PostCell: View {
             }
             
             // Post
-            Image("Photo")
+            Image("Photo2")
                 .resizable()
                 .scaledToFit()
                 .padding(.leading, -20)
                 .padding(.trailing, -20)
                 .onTapGesture(count: 2) {
-                    likePost(post: post._id)
+                    getLikes(post: post._id)
+                    print(postlikes)
                     liked.toggle()
-                    print(liked)
+                    likePost(post: post._id)
+                    
                 }.onAppear{
                     liked = post.liked
+                    getLikes(post: post._id)
                 }
             
             // Horizontal bar
@@ -126,13 +151,16 @@ struct PostCell: View {
                 Image(liked ? "Heart" : "Like")
                     .renderingMode(.template)
                     .foregroundColor(liked ? .red : .black)
+                    .onTapGesture(count: 2) {
+                        getLikes(post: post._id)
+                    }
                 Image("Comment")
                 Image("Send")
                 Spacer()
                 Image("Collect")
             }
             
-            Text("test")
+            Text("Liked By \(postlikes.count) people")
                 .font(Font.system(size: 13.5))
             
             Text(post.content)
@@ -144,6 +172,25 @@ struct PostCell: View {
 }
 
 extension PostCell {
+    
+    func getLikes(post: String) {
+        guard let url = URL(string: "http://127.0.0.1:3000/post/\(post)/likes") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
+                    DispatchQueue.main.async {
+                        self.postlikes = decodedResponse
+                    }
+                }
+            }
+        }.resume()
+    }
     
     func likePost(post: String){
         
