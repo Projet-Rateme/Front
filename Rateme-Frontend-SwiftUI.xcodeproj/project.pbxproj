@@ -20,6 +20,7 @@
 		597221EA29295DA600193A9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221E929295DA600193A9F /* LoginView.swift */; };
 		597221EC29297CC600193A9F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221EB29297CC500193A9F /* WelcomeView.swift */; };
 		597221EE29297D3A00193A9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221ED29297D3A00193A9F /* ContentView.swift */; };
+		59C03C67292C1C6A001AF250 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C03C66292C1C6A001AF250 /* Post.swift */; };
 		59FE96442929C62900CA1A04 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FE96432929C62900CA1A04 /* ProfileViewModel.swift */; };
 		59FE9646292B206700CA1A04 /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FE9645292B206700CA1A04 /* Stories.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		597221E929295DA600193A9F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		597221EB29297CC500193A9F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		597221ED29297D3A00193A9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		59C03C66292C1C6A001AF250 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		59FE96432929C62900CA1A04 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		59FE9645292B206700CA1A04 /* Stories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +173,7 @@
 			children = (
 				5943A1E129298D9A00312485 /* User.swift */,
 				59FE9645292B206700CA1A04 /* Stories.swift */,
+				59C03C66292C1C6A001AF250 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5943A1E029298C2700312485 /* Auth.swift in Sources */,
+				59C03C67292C1C6A001AF250 /* Post.swift in Sources */,
 				597221EA29295DA600193A9F /* LoginView.swift in Sources */,
 				5943A1E229298D9A00312485 /* User.swift in Sources */,
 				59FE9646292B206700CA1A04 /* Stories.swift in Sources */,
