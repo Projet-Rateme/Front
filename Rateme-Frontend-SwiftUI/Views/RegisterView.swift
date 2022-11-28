@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct RegisterView: View {
-    var body: some View {
-            registerHeading()
-        }
-    }
-
-struct registerHeading: View {
-    @State private var email: String = "" // by default it's empty
+    @ObservedObject var userService = UserService()
+    @Binding var name: String
+    @Binding var email: String
+    @Binding var password: String
+    @Binding var cPassword: String
     
-    @ObservedObject var loginVM = loginViewModel()
         var body: some View {
             ZStack {
                 Color("BgColor").edgesIgnoringSafeArea(.all)
@@ -28,13 +25,18 @@ struct registerHeading: View {
                     Spacer()
                     
                     VStack {
-                        Text("Sign In")
+                        Text("Sign Up")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .padding(.bottom, 30)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("PrimaryColor"))
+                        Text(userService.message)
+                            .foregroundColor(Color.red)
+                            .padding(.vertical)
+                            .padding()
+                            .frame(maxWidth: .infinity)
                         
-                        TextField("FullName", text: $loginVM.email)
+                        TextField("Name", text: $name)
                             .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -42,7 +44,7 @@ struct registerHeading: View {
                             .cornerRadius(50.0)
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                             .padding(.vertical)
-                        TextField("Email Adresse", text: $loginVM.email)
+                        TextField("Email Address", text: $email)
                             .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -50,7 +52,15 @@ struct registerHeading: View {
                             .cornerRadius(50.0)
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                             .padding(.vertical)
-                        TextField("Password", text: $loginVM.password)
+                        TextField("Password", text: $password)
+                            .font(.title3)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white)
+                            .cornerRadius(50.0)
+                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+                            .padding(.vertical)
+                        TextField("Confirm password", text: $cPassword)
                             .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -62,8 +72,13 @@ struct registerHeading: View {
                         Spacer()
                         
                         Button(action: {
-                            loginVM.login()
-                            print($loginVM.isAuthenticated)
+                            if (name != "" && email != "" && password != "" && cPassword != "") {
+                                if (password == cPassword) {
+                                    let parameters : [String: Any] = ["name": name, "email": email, "password": password, "confirmPassword": cPassword]
+                                    userService.register(parameters: parameters)
+                                }
+                            }
+                            
                         }) {
                             Text("Sign up")
                                 .font(.title3)
@@ -79,39 +94,12 @@ struct registerHeading: View {
                     
                 }
                 .padding()
-            }.navigate(to: HomeView(), when: $loginVM.isAuthenticated)
-        }
-    }
-
-/*extension RegisterView {
-    
-    func register(email: String, password: String, fullName: String) {
-        
-        guard let url = URL(string: "http://127.0.0.1:3000/register") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.postliked = decodedResponse
-                    }
-                }
             }
-        }.resume()
-        
-        
-        
-        
+        }
     }
-    
-}*/
 
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
-    }
-}
+//struct RegisterView_Previews: PreviewProvider {
+  //  static var previews: some View {
+    //    RegisterView()
+    //}
+//}

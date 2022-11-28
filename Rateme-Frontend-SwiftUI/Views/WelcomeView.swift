@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
+    @State var name = ""
+    @State var email = ""
+    @State var password = ""
+    @State var cPassword = ""
+    
     var body: some View {
         NavigationView {
                     ZStack {
@@ -48,7 +54,7 @@ struct WelcomeView: View {
                             HStack {
                                 Text("New around here? ")
                                 NavigationLink(
-                                    destination: RegisterView().navigationBarHidden(true),
+                                    destination: RegisterView(name: $name, email: $email, password: $password, cPassword: $cPassword).navigationBarHidden(true),
                                     label: {
                                         Text("Sign up")
                                             .font(.title3)

@@ -130,13 +130,12 @@ struct PostCell: View {
             }
             
             // Post
-            Image("Photo2")
-                .resizable()
+            AsyncImage(url: URL(string: post.image))
+                .frame(width: 400, height: 400)
                 .scaledToFit()
                 .padding(.leading, -20)
                 .padding(.trailing, -20)
                 .onTapGesture(count: 2) {
-                    getLikes(post: post._id)
                     print(postlikes)
                     liked.toggle()
                     likePost(post: post._id)
@@ -151,7 +150,7 @@ struct PostCell: View {
                 Image(liked ? "Heart" : "Like")
                     .renderingMode(.template)
                     .foregroundColor(liked ? .red : .black)
-                    .onTapGesture(count: 2) {
+                    .onTapGesture {
                         getLikes(post: post._id)
                     }
                 Image("Comment")

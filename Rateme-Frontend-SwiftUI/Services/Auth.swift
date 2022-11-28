@@ -23,8 +23,20 @@ struct LoginRequestBody: Codable {
     let password: String
 }
 
+struct RegisterRequestBody : Codable {
+    let email: String
+    let password: String
+    let fullName: String
+    let confirm_password: String
+}
+
 struct loginResponse: Codable {
     let token: String?
+    let message: String?
+    let success: Bool?
+}
+
+struct registerResponse: Codable {
     let message: String?
     let success: Bool?
 }
@@ -64,25 +76,6 @@ class Auth {
             completion(.success(token))
         }.resume()
     }
-    
-    /*func register(email: String, password: String, fullName: String) {
-        guard let url = URL(string: "http://127.0.0.1:3000/register") else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([Post].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.postliked = decodedResponse
-                    }
-                }
-            }
-        }.resume()
-}*/
 
     
     func getUsers(token: String, completion: @escaping (Result<Array<User>, NetworkError>) -> ()) {
