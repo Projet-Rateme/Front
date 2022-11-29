@@ -8,13 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct DataModel: Decodable {
+struct LoginModel: Decodable {
     let error: Bool
     let message: String
-    let data: [Login]
+    let token: String
+    let data: Login
 }
 struct Login: Decodable {
-    let _id: Int
+    let _id: String
     let name: String
     let email: String
     let password: String

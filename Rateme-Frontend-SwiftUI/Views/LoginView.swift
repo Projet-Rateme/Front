@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct LoginView: View {
-    var body: some View {
-            loginHeading()
-        }
-    }
-
-struct loginHeading: View {
-    @State private var email: String = "" // by default it's empty
+    @State var forgotpassword_email = ""
     
-    @ObservedObject var loginVM = loginViewModel()
+    @ObservedObject var authService = AuthService()
+    @Binding var email: String
+    @Binding var password: String
+    @State var register_email = ""
+    @State var register_name = ""
+    @State var register_password = ""
+    @State var register_cpassword = ""
         var body: some View {
             ZStack {
-                Color("BgColor").edgesIgnoringSafeArea(.all)
+                Color("PrimaryColor").edgesIgnoringSafeArea(.all)
                 VStack {
                     Text("Rate Me")
                         .font(.title3)
@@ -32,11 +32,11 @@ struct loginHeading: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .padding(.bottom, 30)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("PrimaryColor"))
                         
-                        SocalLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "apple")), text: Text("Sign in with Apple"))
+                        SocialLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "apple")), text: Text("Sign in with Apple"))
                         
-                        SocalLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "google")), text: Text("Sign in with Google"))
+                        SocialLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "google")), text: Text("Sign in with Google"))
                             .padding(.vertical)
                         
                         Divider()
@@ -48,9 +48,9 @@ struct loginHeading: View {
                             .font(.headline)
                             .fontWeight(.bold)
                             .padding(.top, 10)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("PrimaryColor"))
                         
-                        TextField("Email Adress", text: $loginVM.email)
+                        TextField("Email Address", text: $email)
                             .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -58,7 +58,7 @@ struct loginHeading: View {
                             .cornerRadius(50.0)
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                             .padding(.vertical)
-                        TextField("Password", text: $loginVM.password)
+                        TextField("Password", text: $password)
                             .font(.title3)
                             .padding()
                             .frame(maxWidth: .infinity)
@@ -66,40 +66,66 @@ struct loginHeading: View {
                             .cornerRadius(50.0)
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
                             .padding(.vertical)
+                        
+                        HStack {
+                            Text("Forgot Password?")
+                                .foregroundColor(Color.white)
+                                .fontWeight(.bold)
+                            NavigationLink(
+                                destination: ForgotPasswordView(email: $forgotpassword_email).navigationBarHidden(true),
+                                label: {
+                                    Text("Reset")
+                                        .foregroundColor(Color("PrimaryColor"))
+                                        .fontWeight(.bold)
+                                })
+                                .navigationBarHidden(true)
+                        }
+                        
+                        Spacer()
                         
                         Button(action: {
-                            loginVM.login()
-                            print($loginVM.isAuthenticated)
+                            if (email != "" && password != "") {
+                                let parameters : [String: Any] = ["email": email, "password": password]
+                                authService.login(parameters: parameters)
+                                print(authService.isAuthenticated)
+                            }
                         }) {
                             Text("Sign in")
                                 .font(.title3)
-                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("PrimaryColor"))
                                 
                         }.frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color("PrimaryColor"))
+                            .background(Color.white)
                             .cornerRadius(50)
                         
                     }
                     
                     Spacer()
                     Spacer()
-                    Text("You are completely safe.")
-                        .font(.headline)
-                        .foregroundColor(Color("PrimaryColor"))
-                    Text("Read our Terms & Conditions.")
-                        .foregroundColor(Color("PrimaryColor"))
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    Spacer()
+                    HStack {
+                        Text("Don't have an account?")
+                            .foregroundColor(Color.white)
+                            .fontWeight(.bold)
+                        NavigationLink(
+                            destination: RegisterView(name: $register_name, email: $register_email, password: $register_password, cPassword: $register_cpassword).navigationBarHidden(true),
+                            label: {
+                                Text("Create an account")
+                                    .foregroundColor(Color("PrimaryColor"))
+                                    .fontWeight(.bold)
+                            })
+                        .navigationBarHidden(true)
+                        .padding(.leading)
+                    }
                     
                 }
                 .padding()
-            }.navigate(to: HomeView(), when: $loginVM.isAuthenticated)
+            }.navigate(to: HomeView(), when: $authService.isAuthenticated)
         }
     }
 
-struct SocalLoginButton: View {
+struct SocialLoginButton: View {
     var image: Image
     var text: Text
     
@@ -109,21 +135,14 @@ struct SocalLoginButton: View {
             image
             text
                 .font(.title2)
-                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .foregroundColor(Color("PrimaryColor"))
             Spacer()
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color("PrimaryColor"))
+        .background(Color.white)
         .cornerRadius(50.0)
         .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-    }
-}
-
-
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
     }
 }

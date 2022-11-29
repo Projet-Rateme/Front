@@ -6,6 +6,13 @@
 //
 
 import SwiftUI
+import Foundation
+
+struct PostModel: Decodable {
+    let error: Bool
+    let message: String
+    let data: [Post]
+}
 
 struct Post: Decodable {
     let _id: String
@@ -13,6 +20,6 @@ struct Post: Decodable {
     let content: String
     let image: String
     let user: User
-    var liked: Bool
-    var likes: [String]
+    let liked: Bool
+    let likes: [User]
 }

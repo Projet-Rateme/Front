@@ -9,9 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var userdata = [User]()
-    @State private var postdata = [Post]()
-    @State private var email = UserDefaults.standard.string(forKey: "email")
+    @ObservedObject var postService = PostService()
+    @ObservedObject var userService = UserService()
     
     var body: some View {
             NavigationView {
@@ -22,24 +21,24 @@ struct HomeView: View {
                                 ScrollView(.horizontal,showsIndicators: false) {
                                     HStack {
                                         CurrentUserStoryView()
-                                        ForEach(userdata,id: \._id) { user in
-                                            UsersStoryView(user: user)
+                                        ForEach(userService.items,id: \._id) { item in
+                                            UsersStoryView(item: item)
                                         }
                                     }
                                 }
                                 Divider()
-                                ForEach(postdata,id: \._id) { post in
-                                    PostCell(post: post)
+                                ForEach(postService.items,id: \._id) { item in
+                                    PostCell(item: item)
                                     Divider()
                                 }
                                 
-                            }
+                            }.onAppear(perform: {
+                                postService.fetchPosts()
+                                userService.fetchUsers()
+                            })
                             .padding(.leading, -15)
                             .padding(.trailing, -15)
                         }
-                    }.onAppear{
-                        getUsers()
-                        getPosts()
                         
                     }.listStyle(GroupedListStyle())
                         .padding(.top, 70)
@@ -77,14 +76,14 @@ struct HomeView: View {
 }
 
 struct CurrentUserStoryView: View {
-    @AppStorage("email") private var email = ""
+    @AppStorage("name") private var name = ""
     var body: some View {
             VStack {
                 ZStack(alignment: .bottomTrailing) {
                     Image("AvatarBig")
                     Image("Add")
                 }
-                Text(email)
+                Text(name)
                     .scaledToFill()
                     .font(Font.system(size: 12.5))
                     .padding(.top, 4)
@@ -93,14 +92,14 @@ struct CurrentUserStoryView: View {
 }
 
 struct UsersStoryView : View {
-    let user: User
+    var item: User
     var body: some View {
         VStack {
             ZStack {
                 Image("Border")
                 Image("AvatarBig1")
             }
-            Text(user.name)
+            Text(item.name)
                 .scaledToFill()
                 .font(Font.system(size: 12.5))
             }.padding(.trailing, 12)
@@ -112,7 +111,8 @@ struct PostCell: View {
     
     @State private var postliked = [Post]()
     @State private var postlikes = [User]()
-    var post: Post
+    @ObservedObject var postService = PostService()
+    var item: Post
     @State var liked : Bool = false
     
     var body: some View {
@@ -120,7 +120,7 @@ struct PostCell: View {
             HStack {
                 Image("AvatarBig1")
                 VStack(alignment: .leading) {
-                    Text(post.user.name)
+                    Text(item.user.name)
                         .font(Font.system(size: 13.5))
                     Text("Tunis, Tunisia")
                         .font(Font.system(size: 13.5))
@@ -130,20 +130,19 @@ struct PostCell: View {
             }
             
             // Post
-            AsyncImage(url: URL(string: post.image))
-                .frame(width: 400, height: 400)
+            AsyncImage(url: URL(string: item.image))
                 .scaledToFit()
                 .padding(.leading, -20)
                 .padding(.trailing, -20)
                 .onTapGesture(count: 2) {
-                    print(postlikes)
                     liked.toggle()
-                    likePost(post: post._id)
+                    postService.likePost(post: item._id)
+                    postService.fetchPostLikes(post: item._id)
                     
-                }.onAppear{
-                    liked = post.liked
-                    getLikes(post: post._id)
-                }
+                }.onAppear(perform: {
+                    liked = item.liked
+                    postService.fetchPostLikes(post: item._id)
+                })
             
             // Horizontal bar
             HStack(alignment: .center){
@@ -151,7 +150,7 @@ struct PostCell: View {
                     .renderingMode(.template)
                     .foregroundColor(liked ? .red : .black)
                     .onTapGesture {
-                        getLikes(post: post._id)
+                        postService.fetchPostLikes(post: item._id)
                     }
                 Image("Comment")
                 Image("Send")
@@ -159,100 +158,14 @@ struct PostCell: View {
                 Image("Collect")
             }
             
-            Text("Liked By \(postlikes.count) people")
+            Text("Liked By \(postService.likes.count) people")
                 .font(Font.system(size: 13.5))
             
-            Text(post.content)
+            Text(item.content)
                 .lineLimit(4)
                 .font(Font.system(size: 13))
                 .foregroundColor(.init(white: 0.1))
         }
-    }
-}
-
-extension PostCell {
-    
-    func getLikes(post: String) {
-        guard let url = URL(string: "http://127.0.0.1:3000/post/\(post)/likes") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.postlikes = decodedResponse
-                    }
-                }
-            }
-        }.resume()
-    }
-    
-    func likePost(post: String){
-        
-        guard let url = URL(string: "http://127.0.0.1:3000/\(post)/like") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([Post].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.postliked = decodedResponse
-                    }
-                }
-            }
-        }.resume()
-        
-        
-        
-        
-    }
-    
-}
-
-extension HomeView {
-    func getUsers() {
-        guard let url = URL(string: "http://127.0.0.1:3000/getusers") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([User].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.userdata = decodedResponse
-                    }
-                }
-            }
-        }.resume()
-    }
-    
-    func getPosts() {
-        guard let url = URL(string: "http://127.0.0.1:3000/posts") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([Post].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.postdata = decodedResponse
-                    }
-                }
-            }
-        }.resume()
     }
 }
 

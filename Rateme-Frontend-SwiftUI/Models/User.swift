@@ -7,8 +7,14 @@
 
 import SwiftUI
 
-struct User: Codable {
+struct UserModel: Decodable {
+    let error: Bool
+    let message: String
+    let data: [User]
+}
+struct User: Decodable {
     let _id: String
     let name: String
     let email: String
+    let password: String
 }

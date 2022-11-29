@@ -9,15 +9,18 @@ import SwiftUI
 
 struct WelcomeView: View {
     
+    @State var register_email = ""
+    @State var register_password = ""
     @State var name = ""
+    @State var cPassword = ""
     @State var email = ""
     @State var password = ""
-    @State var cPassword = ""
+    
     
     var body: some View {
         NavigationView {
                     ZStack {
-                        Color("BgColor").edgesIgnoringSafeArea(.all)
+                        Color("PrimaryColor").edgesIgnoringSafeArea(.all)
                         VStack {
                             Spacer()
                             Image(uiImage: #imageLiteral(resourceName: "onboard"))
@@ -33,10 +36,9 @@ struct WelcomeView: View {
                                     .foregroundColor(.white)
                                 
                             }.padding()
-                            PrimaryButton(title: "Get Started")
                             
                             NavigationLink(
-                                destination: LoginView().navigationBarHidden(true),
+                                destination: LoginView(email: $email, password: $password).navigationBarHidden(true),
                                 label: {
                                     Text("Sign In")
                                         .font(.title3)
@@ -53,19 +55,21 @@ struct WelcomeView: View {
                             
                             HStack {
                                 Text("New around here? ")
+                                    .foregroundColor(Color.white)
+                                    .fontWeight(.bold)
                                 NavigationLink(
-                                    destination: RegisterView(name: $name, email: $email, password: $password, cPassword: $cPassword).navigationBarHidden(true),
+                                    destination: RegisterView(name: $name, email: $register_email, password: $register_password, cPassword: $cPassword).navigationBarHidden(true),
                                     label: {
                                         Text("Sign up")
-                                            .font(.title3)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color("PrimaryColor"))
                                     })
                                     .navigationBarHidden(true)
                                         
-                            }
+                            }.frame(maxWidth: .infinity)
                         }
                         .padding()
+                        
                     }
                 }
     }
