@@ -1,147 +1,111 @@
 //
 //  LoginView.swift
-//  Rateme-Frontend-SwiftUI
+//  Rateme-frontend
 //
-//  Created by Chawki Ferroukhi on 19/11/2022.
+//  Created by Chawki Ferroukhi on 1/12/2022.
 //
 
 import SwiftUI
 
 struct LoginView: View {
-    @State var forgotpassword_email = ""
-    
-    @EnvironmentObject var authService : AuthService
-    @Binding var email: String
-    @Binding var password: String
-    @State var register_email = ""
-    @State var register_name = ""
-    @State var register_password = ""
-    @State var register_cpassword = ""
-        var body: some View {
-            ZStack {
-                Color("PrimaryColor").edgesIgnoringSafeArea(.all)
-                VStack {
-                    Text("Rate Me")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("PrimaryColor"))
-                    Spacer()
+    @State private var eye = false
+        @State var mail = ""
+        @State var pass = ""
+        
+        var body : some View{
+            
+            VStack{
+                VStack{
+                    HStack(spacing: 15){
+                        
+                      Image(systemName: "envelope")
+                            .foregroundColor(Color("TextColor"))
+                            .frame(width: 15, height: 18)
+                       TextField("Email Address", text: self.$mail)
+                        
+                      if mail != "" {
+                          Image(systemName: "checkmark").foregroundColor(.green)
+                      }
+                      else{
+                          Image(systemName: "xmark").foregroundColor(.red)
+                      }
+                      
+                      
+                     
+                    }.padding(.vertical, 25)
+                        .frame(maxHeight: UIScreen.main.bounds.height / 15)
+                  
+                  
+                    Divider()
                     
-                    VStack {
-                        Text("Sign In")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .padding(.bottom, 30)
-                            .foregroundColor(Color("PrimaryColor"))
+                    HStack(spacing: 15){
                         
-                        SocialLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "apple")), text: Text("Sign in with Apple"))
+                      Image(systemName: "lock")
+                          .resizable()
+                          .frame(width: 15, height: 18)
+                          .foregroundColor(Color("TextColor"))
                         
-                        SocialLoginButton(image: Image(uiImage: #imageLiteral(resourceName: "google")), text: Text("Sign in with Google"))
-                            .padding(.vertical)
                         
-                        Divider()
-                            .frame(height: 1)
-                            .overlay(.gray)
-                            .padding(.top, 30)
-                        
-                        Text("Or login using email")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                            .padding(.top, 10)
-                            .foregroundColor(Color("PrimaryColor"))
-                        
-                        TextField("Email Address", text: $email)
-                            .font(.title3)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                            .padding(.vertical)
-                        TextField("Password", text: $password)
-                            .font(.title3)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                            .padding(.vertical)
-                        
-                        HStack {
-                            Text("Forgot Password?")
-                                .foregroundColor(Color.white)
-                                .fontWeight(.bold)
-                            NavigationLink(
-                                destination: ForgotPasswordView(email: $forgotpassword_email).navigationBarHidden(true),
-                                label: {
-                                    Text("Reset")
-                                        .foregroundColor(Color("PrimaryColor"))
-                                        .fontWeight(.bold)
-                                })
-                                .navigationBarHidden(true)
+                        if eye {
+                            TextField("Password", text: self.$pass)
+                                .foregroundColor(Color("TextColor"))
+                            
+                        }
+                        else{
+                            SecureField("Password", text: self.$pass)
+                                .foregroundColor(Color("TextColor"))
+                           
                         }
                         
-                        Spacer()
-                        
                         Button(action: {
-                            if (email != "" && password != "") {
-                                let parameters : [String: Any] = ["email": email, "password": password]
-                                authService.login(parameters: parameters)
-                            }
-                        }) {
-                            Text("Sign in")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color("PrimaryColor"))
-                                
-                        }.frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(50)
+                            self.eye.toggle()
+                        })
+                        {
+                          
+                            Image(systemName: "eye").foregroundColor(Color("TextColor"))
+                        }
                         
-                    }
-                    
-                    Spacer()
-                    Spacer()
-                    HStack {
-                        Text("Don't have an account?")
-                            .foregroundColor(Color.white)
-                            .fontWeight(.bold)
-                        NavigationLink(
-                            destination: RegisterView(name: $register_name, email: $register_email, password: $register_password, cPassword: $register_cpassword).navigationBarHidden(true),
-                            label: {
-                                Text("Create an account")
-                                    .foregroundColor(Color("PrimaryColor"))
-                                    .fontWeight(.bold)
-                            })
-                        .navigationBarHidden(true)
-                        .padding(.leading)
-                    }
+                        
+            
+                    }.padding(.vertical, 20)
+                        .frame(maxHeight: UIScreen.main.bounds.height / 15)
+                  
                     
                 }
-                .padding()
-            }.navigate(to: HomeView(), when: $authService.isAuthenticated)
+                .padding(.vertical)
+                .padding(.horizontal, 20)
+                .padding(.bottom, 40)
+                .background(.ultraThinMaterial)
+                .cornerRadius(10)
+                .padding(.top, 25)
+                
+                
+                NavigationLink(destination: OnBoardingView()) {
+                    Button(action: {
+                        
+                        
+                    }) {
+                        
+                        Text("SIGNIN")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 100)
+                        
+                    }.background(
+                        Color("PrimaryColor")
+                    )
+                    .cornerRadius(8)
+                    .offset(y: -40)
+                    .padding(.bottom, -40)
+                    .shadow(radius: 15)
+                }.navigationBarHidden(true)
+            }.frame(maxWidth: UIScreen.main.bounds.width - 10, maxHeight: UIScreen.main.bounds.height / 2)
         }
-    }
+}
 
-struct SocialLoginButton: View {
-    var image: Image
-    var text: Text
-    
-    var body: some View {
-        HStack {
-            Spacer()
-            image
-            text
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(Color("PrimaryColor"))
-            Spacer()
-        }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(50.0)
-        .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
     }
 }

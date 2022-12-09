@@ -1,128 +1,140 @@
 //
 //  RegisterView.swift
-//  Rateme-Frontend-SwiftUI
+//  Rateme-frontend
 //
-//  Created by Chawki Ferroukhi on 22/11/2022.
+//  Created by Chawki Ferroukhi on 2/12/2022.
 //
 
 import SwiftUI
 
 struct RegisterView: View {
-    @ObservedObject var userService = UserService()
-    @Binding var name: String
-    @Binding var email: String
-    @Binding var password: String
-    @Binding var cPassword: String
-    @State var login_email = ""
-    @State var login_password = ""
-    @State var message = ""
-    
-        var body: some View {
-            ZStack {
-                Color("PrimaryColor").edgesIgnoringSafeArea(.all)
-                VStack {
-                    Text("Rate Me")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("PrimaryColor"))
-                    Spacer()
+    @State private var eye = false
+    @State private var confirm = false
+    @State var mail = ""
+    @State var pass = ""
+    @State var repass = ""
+       
+    var body : some View{
+        
+        VStack{
+            VStack{
+                HStack(spacing: 15){
                     
-                    VStack {
-                        Text("Sign Up")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .padding(.bottom, 30)
-                            .foregroundColor(Color("PrimaryColor"))
-                        Text(message)
-                            .foregroundColor(Color.red)
-                            .padding(.vertical)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                        
-                        TextField("Name", text: $name)
-                            .font(.title3)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                            .padding(.vertical)
-                        TextField("Email Address", text: $email)
-                            .font(.title3)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                            .padding(.vertical)
-                        TextField("Password", text: $password)
-                            .font(.title3)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                            .padding(.vertical)
-                        TextField("Confirm password", text: $cPassword)
-                            .font(.title3)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(50.0)
-                            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
-                            .padding(.vertical)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            if (name != "" && email != "" && password != "" && cPassword != "") {
-                                if (password == cPassword) {
-                                    let parameters : [String: Any] = ["name": name, "email": email, "password": password, "confirmPassword": cPassword]
-                                    userService.register(parameters: parameters)
-                                    self.message = "An email was sent to \(email)"
-                                } else {
-                                    self.message = "Passwords do not match"
-                                }
-                            } else {
-                                self.message = "All fields are required"
-                            }
-                        }) {
-                            Text("Sign up")
-                                .font(.title3)
-                                .foregroundColor(Color("PrimaryColor"))
-                                .fontWeight(.bold)
-                                
-                        }.frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(50)
-                        NavigationLink(
-                            destination: LoginView(email: $login_email, password: $login_password).navigationBarHidden(true),
-                            label: {
-                                Text("Back to login")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color("PrimaryColor"))
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.white)
-                                    .cornerRadius(60.0)
-                                    .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-                                    .padding(.vertical)
-                            })
-                            .navigationBarHidden(true)
-                        
+                    Image(systemName: "envelope")
+                        .foregroundColor(Color("TextColor"))
+                        .frame(width: 15, height: 18)
+                    TextField("Email Address", text: self.$mail)
+                    
+                    if mail != "" {
+                        Image(systemName: "checkmark").foregroundColor(.green)
+                    }
+                    else{
+                        Image(systemName: "xmark").foregroundColor(.red)
                     }
                     
+                }.padding(.vertical, 20)
+                    .frame(maxHeight: UIScreen.main.bounds.height / 15)
+                
+                Divider()
+                
+                HStack(spacing: 15){
                     
-                }
-                .padding()
+                    Image(systemName: "lock")
+                        .resizable()
+                        .frame(width: 15, height: 18)
+                        .foregroundColor(Color("TextColor"))
+                    
+                    
+                    if eye {
+                        TextField("Password", text: self.$pass)
+                            .foregroundColor(Color("TextColor"))
+                        
+                    }
+                    else{
+                        SecureField("Password", text: self.$pass)
+                            .foregroundColor(Color("TextColor"))
+                    }
+                    
+                    Button(action: {
+                        self.eye.toggle()
+                    })
+                    {
+                        
+                        Image(systemName: "eye").foregroundColor(Color("TextColor"))
+                    }
+                    
+                }.padding(.vertical, 20)
+                    .frame(maxHeight: UIScreen.main.bounds.height / 15)
+                
+                Divider()
+                
+                HStack(spacing: 15){
+                    
+                    Image(systemName: "lock")
+                        .resizable()
+                        .frame(width: 15, height: 18)
+                        .foregroundColor(Color("TextColor"))
+                    
+                    
+                    if confirm {
+                        TextField("Confirm Password", text: self.$pass)
+                            .foregroundColor(Color("TextColor"))
+                        
+                    }
+                    else{
+                        SecureField("Confirm Password", text: self.$repass)
+                            .foregroundColor(Color("TextColor"))
+                    }
+                    
+                    Button(action: {
+                        self.confirm.toggle()
+                    })
+                    {
+                        Image(systemName: "eye").foregroundColor(Color("TextColor"))
+                    }
+                    
+                }.padding(.vertical, 20)
+                    .frame(maxHeight: UIScreen.main.bounds.height / 15)
+                
             }
-        }
+            .padding(.vertical)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 30)
+            .background(.ultraThinMaterial)
+            .cornerRadius(10)
+            .padding(.top, 25)
+            
+            Button(action: {
+                
+            }) {
+                
+                Text("SIGNUP")
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .padding(.vertical)
+                    .frame(width: UIScreen.main.bounds.width - 100)
+                
+            }.background(
+                Color("PrimaryColor")
+            )
+            .cornerRadius(8)
+            .offset(y: -40)
+            .padding(.bottom, -40)
+            .shadow(radius: 15)
+            
+            
+            if pass != repass{
+                Text("Please make sure your passwords match")
+                    .font(.callout)
+                    .foregroundColor(Color.red)
+            }
+            
+        }.frame(maxWidth: UIScreen.main.bounds.width - 10)
     }
+}
 
-//struct RegisterView_Previews: PreviewProvider {
-  //  static var previews: some View {
-    //    RegisterView()
-    //}
-//}
+struct RegisterView_Previews: PreviewProvider {
+    static var previews: some View {
+        RegisterView()
+    }
+}
