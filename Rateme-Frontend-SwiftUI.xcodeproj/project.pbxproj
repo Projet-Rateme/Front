@@ -14,7 +14,18 @@
 		597221CD29295CCA00193A9F /* Rateme_Frontend_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221CC29295CCA00193A9F /* Rateme_Frontend_SwiftUITests.swift */; };
 		597221D729295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221D629295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift */; };
 		597221D929295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */; };
-		597221EE29297D3A00193A9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221ED29297D3A00193A9F /* ContentView.swift */; };
+		5976D4D52942D48D0047E55C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4D42942D48D0047E55C /* ImagePicker.swift */; };
+		5976D4D82942D4AB0047E55C /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4D72942D4AB0047E55C /* FeedView.swift */; };
+		5976D4DA2942D4B50047E55C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4D92942D4B50047E55C /* LoginView.swift */; };
+		5976D4DC2942D4BE0047E55C /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4DB2942D4BE0047E55C /* RegisterView.swift */; };
+		5976D4DE2942D4C60047E55C /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4DD2942D4C60047E55C /* AppView.swift */; };
+		5976D4E02942D4D10047E55C /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4DF2942D4D10047E55C /* ImageView.swift */; };
+		5976D4E22942D4D90047E55C /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E12942D4D90047E55C /* LogoView.swift */; };
+		5976D4E42942D4E10047E55C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E32942D4E10047E55C /* ProfileView.swift */; };
+		5976D4E62942D4F90047E55C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E52942D4F90047E55C /* HomeView.swift */; };
+		5976D4E82942D5040047E55C /* ProfilePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E72942D5040047E55C /* ProfilePostsView.swift */; };
+		5976D4EA2942D5120047E55C /* ProfilePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E92942D5120047E55C /* ProfilePhotosView.swift */; };
+		5976D4EC2942D5550047E55C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4EB2942D5550047E55C /* OnBoardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +56,18 @@
 		597221D229295CCA00193A9F /* Rateme-Frontend-SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rateme-Frontend-SwiftUIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		597221D629295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		597221ED29297D3A00193A9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5976D4D42942D48D0047E55C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		5976D4D72942D4AB0047E55C /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		5976D4D92942D4B50047E55C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5976D4DB2942D4BE0047E55C /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		5976D4DD2942D4C60047E55C /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		5976D4DF2942D4D10047E55C /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		5976D4E12942D4D90047E55C /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		5976D4E32942D4E10047E55C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5976D4E52942D4F90047E55C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5976D4E72942D5040047E55C /* ProfilePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsView.swift; sourceTree = "<group>"; };
+		5976D4E92942D5120047E55C /* ProfilePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotosView.swift; sourceTree = "<group>"; };
+		5976D4EB2942D5550047E55C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +119,12 @@
 		597221B929295CC900193A9F /* Rateme-Frontend-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				5976D4D62942D49F0047E55C /* Views */,
+				5976D4D32942D47F0047E55C /* ImagePicker */,
 				597221BA29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift */,
 				597221BE29295CCA00193A9F /* Assets.xcassets */,
 				597221C029295CCA00193A9F /* Rateme_Frontend_SwiftUI.entitlements */,
 				597221C129295CCA00193A9F /* Preview Content */,
-				597221ED29297D3A00193A9F /* ContentView.swift */,
 			);
 			path = "Rateme-Frontend-SwiftUI";
 			sourceTree = "<group>";
@@ -129,6 +152,32 @@
 				597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */,
 			);
 			path = "Rateme-Frontend-SwiftUIUITests";
+			sourceTree = "<group>";
+		};
+		5976D4D32942D47F0047E55C /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				5976D4D42942D48D0047E55C /* ImagePicker.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		5976D4D62942D49F0047E55C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5976D4D72942D4AB0047E55C /* FeedView.swift */,
+				5976D4D92942D4B50047E55C /* LoginView.swift */,
+				5976D4DB2942D4BE0047E55C /* RegisterView.swift */,
+				5976D4DD2942D4C60047E55C /* AppView.swift */,
+				5976D4DF2942D4D10047E55C /* ImageView.swift */,
+				5976D4E12942D4D90047E55C /* LogoView.swift */,
+				5976D4E32942D4E10047E55C /* ProfileView.swift */,
+				5976D4E52942D4F90047E55C /* HomeView.swift */,
+				5976D4E72942D5040047E55C /* ProfilePostsView.swift */,
+				5976D4E92942D5120047E55C /* ProfilePhotosView.swift */,
+				5976D4EB2942D5550047E55C /* OnBoardingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +316,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				597221EE29297D3A00193A9F /* ContentView.swift in Sources */,
+				5976D4E02942D4D10047E55C /* ImageView.swift in Sources */,
+				5976D4E22942D4D90047E55C /* LogoView.swift in Sources */,
+				5976D4E82942D5040047E55C /* ProfilePostsView.swift in Sources */,
+				5976D4E42942D4E10047E55C /* ProfileView.swift in Sources */,
+				5976D4D82942D4AB0047E55C /* FeedView.swift in Sources */,
+				5976D4D52942D48D0047E55C /* ImagePicker.swift in Sources */,
+				5976D4E62942D4F90047E55C /* HomeView.swift in Sources */,
+				5976D4DE2942D4C60047E55C /* AppView.swift in Sources */,
+				5976D4EC2942D5550047E55C /* OnBoardingView.swift in Sources */,
+				5976D4DC2942D4BE0047E55C /* RegisterView.swift in Sources */,
+				5976D4DA2942D4B50047E55C /* LoginView.swift in Sources */,
 				597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */,
+				5976D4EA2942D5120047E55C /* ProfilePhotosView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

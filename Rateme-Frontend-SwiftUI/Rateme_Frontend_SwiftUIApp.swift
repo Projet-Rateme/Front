@@ -11,7 +11,7 @@ import SwiftUI
 struct Rateme_Frontend_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView().environment(\.colorScheme, .dark)
         }
     }
 }

@@ -1,8 +1,8 @@
 //
 //  HomeView.swift
-//  Rateme-Frontend-SwiftUI
+//  Rateme-frontend
 //
-//  Created by Chawki Ferroukhi on 9/12/2022.
+//  Created by Chawki Ferroukhi on 2/12/2022.
 //
 
 import SwiftUI
