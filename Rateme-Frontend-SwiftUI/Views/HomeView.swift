@@ -9,8 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject var authService: AuthService
     @ObservedObject var postService = PostService()
     @ObservedObject var userService = UserService()
+    
+    @State private var image: Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
     
     var body: some View {
             NavigationView {
@@ -20,7 +25,7 @@ struct HomeView: View {
                             VStack {
                                 ScrollView(.horizontal,showsIndicators: false) {
                                     HStack {
-                                        CurrentUserStoryView()
+                                        CurrentUserStoryView(item: authService.currentUser)
                                         ForEach(userService.items,id: \._id) { item in
                                             UsersStoryView(item: item)
                                         }
@@ -35,6 +40,7 @@ struct HomeView: View {
                             }.onAppear(perform: {
                                 postService.fetchPosts()
                                 userService.fetchUsers()
+                                print(authService.currentUser)
                             })
                             .padding(.leading, -15)
                             .padding(.trailing, -15)
@@ -47,8 +53,13 @@ struct HomeView: View {
                             Image(systemName: "house.fill")
                             Text("Home")
                         }
-                    
-                    Text("Bookmark Tab")
+                    HStack {
+                        Text("Update")
+                        Text("Bookmark Tab")
+                            .onTapGesture {
+                                showingImagePicker = true
+                            }
+                    }
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                         .tabItem {
                             Image(systemName: "bookmark.circle.fill")
@@ -70,20 +81,33 @@ struct HomeView: View {
                         }
                 }.navigationBarTitle("RateMe", displayMode: .inline)
                     .navigationBarItems(leading: Image("Camera"), trailing: Image("Direct"))
+                    .onChange(of: inputImage) { _ in loadImage() }
+                    .sheet(isPresented: $showingImagePicker) {
+                        ImagePicker(image: $inputImage)
+                    }
                 
             }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        authService.setProfilePicture(image: inputImage)
     }
 }
 
 struct CurrentUserStoryView: View {
     @AppStorage("name") private var name = ""
+    var item: Login
     var body: some View {
             VStack {
                 ZStack(alignment: .bottomTrailing) {
-                    Image("AvatarBig")
+                    AsyncImage(url: URL(string: item.image))
+                        .clipShape(Circle())
                     Image("Add")
+                }.onTapGesture {
+                    print(item.image)
                 }
-                Text(name)
+                Text(item.name)
                     .scaledToFill()
                     .font(Font.system(size: 12.5))
                     .padding(.top, 4)
@@ -97,7 +121,8 @@ struct UsersStoryView : View {
         VStack {
             ZStack {
                 Image("Border")
-                Image("AvatarBig1")
+                AsyncImage(url: URL(string: item.image))
+                    .clipShape(Circle())
             }
             Text(item.name)
                 .scaledToFill()
@@ -169,8 +194,8 @@ struct PostCell: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}

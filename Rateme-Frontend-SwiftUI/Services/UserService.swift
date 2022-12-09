@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Alamofire
 
 class UserService: ObservableObject {
     @Published var items = [User]()
@@ -51,6 +52,7 @@ class UserService: ObservableObject {
             
         }.resume()
     }
+
     
     func forgotPassword(parameters : [String: Any]) {
         guard let url = URL(string: "\(urlPrefix)/forgotpassword") else {

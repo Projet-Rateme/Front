@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Rateme_Frontend_SwiftUIApp: App {
+    @StateObject var currentUser = AuthService()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(currentUser)
         }
     }
 }

@@ -17,4 +17,5 @@ struct User: Decodable {
     let name: String
     let email: String
     let password: String
+    let image: String
 }

@@ -7,9 +7,10 @@
 
 import Foundation
 import SwiftUI
+import Alamofire
 
 class AuthService: ObservableObject {
-    @Published var items = Login(_id: "", name: "", email: "", password: "")
+    @Published var currentUser = Login(_id: "", name: "", email: "", password: "", image: "")
     
     @Published var message = ""
     
@@ -41,8 +42,9 @@ class AuthService: ObservableObject {
                     let result = try JSONDecoder().decode(LoginModel.self, from: data)
                     defaults.setValue(result.token, forKey: "jsonwebtoken")
                     defaults.setValue(result.data.name, forKey: "name")
+
                     DispatchQueue.main.async {
-                        print(result)
+                        self.currentUser = result.data
                         self.isAuthenticated = true
                     }
                 } else {
@@ -54,4 +56,32 @@ class AuthService: ObservableObject {
             
         }.resume()
     }
+    
+    func setProfilePicture(image : UIImage?){
+        
+        let headers: HTTPHeaders = [
+            "Content-type": "multipart/form-data"
+        ]
+        
+        AF.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(image!.jpegData(compressionQuality: 0.99)!, withName: "image" , fileName: "file.jpeg", mimeType: "image/jpeg")
+            },
+            to: "\(urlPrefix)/upload", method: .post , headers: headers)
+        .response { res in
+            switch res.result {
+            case .success:
+                let data = Data(res.data!)
+                do {
+                    let parsedData = try JSONDecoder().decode(LoginModel.self, from: data)
+                    DispatchQueue.main.async {
+                        self.currentUser = parsedData.data
+                    }
+                }catch { print(error)}
+            case .failure(let err): print(err.localizedDescription)
+            }
+            
+        }
+    }
+
 }

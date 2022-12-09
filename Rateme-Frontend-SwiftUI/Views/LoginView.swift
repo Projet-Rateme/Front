@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State var forgotpassword_email = ""
     
-    @ObservedObject var authService = AuthService()
+    @EnvironmentObject var authService : AuthService
     @Binding var email: String
     @Binding var password: String
     @State var register_email = ""
@@ -87,7 +87,6 @@ struct LoginView: View {
                             if (email != "" && password != "") {
                                 let parameters : [String: Any] = ["email": email, "password": password]
                                 authService.login(parameters: parameters)
-                                print(authService.isAuthenticated)
                             }
                         }) {
                             Text("Sign in")
