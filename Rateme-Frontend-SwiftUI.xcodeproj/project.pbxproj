@@ -26,6 +26,8 @@
 		5976D4E82942D5040047E55C /* ProfilePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E72942D5040047E55C /* ProfilePostsView.swift */; };
 		5976D4EA2942D5120047E55C /* ProfilePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4E92942D5120047E55C /* ProfilePhotosView.swift */; };
 		5976D4EC2942D5550047E55C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4EB2942D5550047E55C /* OnBoardingView.swift */; };
+		59D2EFB3294393D700E8EDCB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D2EFB2294393D700E8EDCB /* SettingsView.swift */; };
+		59D2EFB729440BE100E8EDCB /* DisplayModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		5976D4E72942D5040047E55C /* ProfilePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsView.swift; sourceTree = "<group>"; };
 		5976D4E92942D5120047E55C /* ProfilePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotosView.swift; sourceTree = "<group>"; };
 		5976D4EB2942D5550047E55C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		59D2EFB2294393D700E8EDCB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				5976D4E72942D5040047E55C /* ProfilePostsView.swift */,
 				5976D4E92942D5120047E55C /* ProfilePhotosView.swift */,
 				5976D4EB2942D5550047E55C /* OnBoardingView.swift */,
+				59D2EFB2294393D700E8EDCB /* SettingsView.swift */,
+				59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,8 +329,10 @@
 				5976D4D82942D4AB0047E55C /* FeedView.swift in Sources */,
 				5976D4D52942D48D0047E55C /* ImagePicker.swift in Sources */,
 				5976D4E62942D4F90047E55C /* HomeView.swift in Sources */,
+				59D2EFB3294393D700E8EDCB /* SettingsView.swift in Sources */,
 				5976D4DE2942D4C60047E55C /* AppView.swift in Sources */,
 				5976D4EC2942D5550047E55C /* OnBoardingView.swift in Sources */,
+				59D2EFB729440BE100E8EDCB /* DisplayModeView.swift in Sources */,
 				5976D4DC2942D4BE0047E55C /* RegisterView.swift in Sources */,
 				5976D4DA2942D4B50047E55C /* LoginView.swift in Sources */,
 				597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */,

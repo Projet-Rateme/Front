@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 Color("bgColor")
                     .ignoresSafeArea(.all)
@@ -26,7 +26,8 @@ struct ProfileView: View {
             .font(Font.system(size: 18))
             .fontWeight(.bold)
             .padding(.leading, 7)
-            .foregroundColor(Color("TextColor")), trailing: Image(systemName: "gear").renderingMode(.template).foregroundColor(Color("TextColor")))
+            .foregroundColor(Color("TextColor")), trailing:
+                                    NavigationLink(destination: SettingsView()) {Image(systemName: "gear").renderingMode(.template).foregroundColor(Color("TextColor"))})
             .toolbarBackground(
                 Color("bgColor"),
                 for: .navigationBar

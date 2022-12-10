@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 Color("bgColor")
                     .ignoresSafeArea(.all)

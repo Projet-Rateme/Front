@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Rateme_Frontend_SwiftUIApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = true
     var body: some Scene {
         WindowGroup {
-            AppView().environment(\.colorScheme, .dark)
+            AppView().preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
