@@ -15,25 +15,30 @@ struct FeedView: View {
                     .ignoresSafeArea(.all)
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text("Trending")
-                            .fontWeight(.bold)
-                        ScrollView(.horizontal,showsIndicators: false) {
-                            HStack {
-                                CurrentUserStoryView()
-                                UsersStoryView()
-                            }.padding(.bottom, 20)
-                        }
+                        VStack {
+                            Text("Trending")
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 5)
+                            ScrollView(.horizontal,showsIndicators: false) {
+                                HStack {
+                                    CurrentUserStoryView()
+                                    UsersStoryView()
+                                }.padding(.bottom, 20)
+                            }
+                        }.padding(5)
                         
                         Divider()
                             .padding(.leading, 25)
                             .padding(.trailing, 25)
                         
                         PostCell().padding(.top, 10)
-                    }.padding()
+                    }
                 }
             }.navigationBarItems(leading:Text("RateMe")
                 .font(Font.system(size: 20))
                 .fontWeight(.bold)
+                .padding(.leading, -10)
                 .foregroundColor(Color("TextColor")), trailing: Image("Direct").renderingMode(.template).foregroundColor(Color("TextColor")))
             .toolbarBackground(
                 Color("bgColor"),
@@ -160,10 +165,9 @@ struct PostCell: View {
                     .padding(.trailing, 10)
             }.padding(.leading, 10)
             ZStack(alignment: .bottomTrailing) {
-                Image("Photo2")
+                Image("Photo")
                     .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width - 30, maxHeight: UIScreen.main.bounds.height / 3.5)
-                    .cornerRadius(20)
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 3.5)
                 
                 HStack {
                     Image("Like")
@@ -184,9 +188,9 @@ struct PostCell: View {
                         .foregroundColor(Color.white)
                         .padding(.trailing)
                 }
-                .frame(maxWidth: UIScreen.main.bounds.width - 30, maxHeight: UIScreen.main.bounds.height / 16)
+                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 16)
                 .background(Color.black.opacity(0.4))
-            }.cornerRadius(20)
+            }
             
             Text("Comments here")
                 .lineLimit(4)
@@ -221,8 +225,7 @@ struct PostCell: View {
             ZStack(alignment: .bottomTrailing) {
                 Image("Photo2")
                     .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width - 30, maxHeight: UIScreen.main.bounds.height / 3.5)
-                    .cornerRadius(20)
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 3.5)
                 
                 HStack {
                     Image("Like")
@@ -243,9 +246,9 @@ struct PostCell: View {
                         .foregroundColor(Color.white)
                         .padding(.trailing)
                 }
-                .frame(maxWidth: UIScreen.main.bounds.width - 30, maxHeight: UIScreen.main.bounds.height / 16)
+                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 16)
                 .background(Color.black.opacity(0.4))
-            }.cornerRadius(20)
+            }
             
             Text("Comments here")
                 .lineLimit(4)

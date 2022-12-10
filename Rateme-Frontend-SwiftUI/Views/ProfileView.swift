@@ -27,7 +27,10 @@ struct ProfileView: View {
             .fontWeight(.bold)
             .padding(.leading, 7)
             .foregroundColor(Color("TextColor")), trailing:
-                                    NavigationLink(destination: SettingsView()) {Image(systemName: "gear").renderingMode(.template).foregroundColor(Color("TextColor"))})
+                                    HStack {
+                NavigationLink(destination: AddPostView()) {Image(systemName: "plus").renderingMode(.template).foregroundColor(Color("TextColor"))}
+                NavigationLink(destination: SettingsView()) {Image(systemName: "gear").renderingMode(.template).foregroundColor(Color("TextColor"))}
+            })
             .toolbarBackground(
                 Color("bgColor"),
                 for: .navigationBar
@@ -43,11 +46,14 @@ struct HeaderSection: View {
                 .resizable()
                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 3.5)
                 .cornerRadius(20)
+                .padding(.top, -40)
             HStack {
                 Image("pic")
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .scaledToFit()
+                    .frame(maxWidth: UIScreen.main.bounds.width / 4)
                     .clipShape(Circle())
+                    .shadow(radius: 10)
                     .padding(.top, -65)
             }
     }

@@ -28,6 +28,7 @@
 		5976D4EC2942D5550047E55C /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976D4EB2942D5550047E55C /* OnBoardingView.swift */; };
 		59D2EFB3294393D700E8EDCB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D2EFB2294393D700E8EDCB /* SettingsView.swift */; };
 		59D2EFB729440BE100E8EDCB /* DisplayModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */; };
+		59D2EFB92944C9E300E8EDCB /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D2EFB82944C9E300E8EDCB /* AddPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		5976D4EB2942D5550047E55C /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		59D2EFB2294393D700E8EDCB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModeView.swift; sourceTree = "<group>"; };
+		59D2EFB82944C9E300E8EDCB /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				5976D4EB2942D5550047E55C /* OnBoardingView.swift */,
 				59D2EFB2294393D700E8EDCB /* SettingsView.swift */,
 				59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */,
+				59D2EFB82944C9E300E8EDCB /* AddPostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				5976D4E42942D4E10047E55C /* ProfileView.swift in Sources */,
 				5976D4D82942D4AB0047E55C /* FeedView.swift in Sources */,
 				5976D4D52942D48D0047E55C /* ImagePicker.swift in Sources */,
+				59D2EFB92944C9E300E8EDCB /* AddPostView.swift in Sources */,
 				5976D4E62942D4F90047E55C /* HomeView.swift in Sources */,
 				59D2EFB3294393D700E8EDCB /* SettingsView.swift in Sources */,
 				5976D4DE2942D4C60047E55C /* AppView.swift in Sources */,
