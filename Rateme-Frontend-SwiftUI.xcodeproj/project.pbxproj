@@ -125,6 +125,8 @@
 		597221B929295CC900193A9F /* Rateme-Frontend-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				59D2EFBE29453C4600E8EDCB /* Services */,
+				59D2EFBD29453C3C00E8EDCB /* Models */,
 				5976D4D62942D49F0047E55C /* Views */,
 				5976D4D32942D47F0047E55C /* ImagePicker */,
 				597221BA29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift */,
@@ -171,22 +173,52 @@
 		5976D4D62942D49F0047E55C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5976D4D72942D4AB0047E55C /* FeedView.swift */,
+				59D2EFBB2945061600E8EDCB /* Content */,
+				59D2EFBA2945060B00E8EDCB /* Authentication */,
+				5976D4DF2942D4D10047E55C /* ImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		59D2EFBA2945060B00E8EDCB /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5976D4EB2942D5550047E55C /* OnBoardingView.swift */,
 				5976D4D92942D4B50047E55C /* LoginView.swift */,
 				5976D4DB2942D4BE0047E55C /* RegisterView.swift */,
-				5976D4DD2942D4C60047E55C /* AppView.swift */,
-				5976D4DF2942D4D10047E55C /* ImageView.swift */,
 				5976D4E12942D4D90047E55C /* LogoView.swift */,
-				5976D4E32942D4E10047E55C /* ProfileView.swift */,
 				5976D4E52942D4F90047E55C /* HomeView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		59D2EFBB2945061600E8EDCB /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				5976D4D72942D4AB0047E55C /* FeedView.swift */,
+				5976D4DD2942D4C60047E55C /* AppView.swift */,
+				5976D4E32942D4E10047E55C /* ProfileView.swift */,
 				5976D4E72942D5040047E55C /* ProfilePostsView.swift */,
 				5976D4E92942D5120047E55C /* ProfilePhotosView.swift */,
-				5976D4EB2942D5550047E55C /* OnBoardingView.swift */,
 				59D2EFB2294393D700E8EDCB /* SettingsView.swift */,
 				59D2EFB629440BE100E8EDCB /* DisplayModeView.swift */,
 				59D2EFB82944C9E300E8EDCB /* AddPostView.swift */,
 			);
-			path = Views;
+			path = Content;
+			sourceTree = "<group>";
+		};
+		59D2EFBD29453C3C00E8EDCB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		59D2EFBE29453C4600E8EDCB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
