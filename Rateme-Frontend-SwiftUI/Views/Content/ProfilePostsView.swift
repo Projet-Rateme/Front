@@ -8,80 +8,33 @@
 import SwiftUI
 
 struct ProfilePostsView: View {
+    @ObservedObject var postService = PostService()
+    let items = [GridItem(.flexible()), GridItem(.flexible()),GridItem(.flexible())]
     var body : some View{
         VStack {
-            HStack {
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("pic")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-            }.padding()
-            HStack {
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-            }.padding()
-            HStack {
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-            }.padding()
-            HStack {
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-            }.padding()
-            HStack {
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
-                    .cornerRadius(20)
-            }.padding()
-        }
+            LazyVGrid(columns: items) {
+                ForEach(postService.items,id: \._id) { item in
+                    PostView(item: item)
+                }.padding()
+            }
+        }.onAppear(perform: {
+            postService.fetchCurrentUserPosts()
+        })
         .background(.ultraThinMaterial)
+        .cornerRadius(20)
+    }
+}
+
+struct PostView: View {
+    var item: Post
+    var body: some View {
+        AsyncImage(url: URL(string: item.image)) { image in
+            image
+                .resizable()
+        } placeholder: {
+            //put your placeer here
+        }
+        .frame(maxWidth: UIScreen.main.bounds.width / 3.5, maxHeight: UIScreen.main.bounds.height / 8)
         .cornerRadius(20)
     }
 }

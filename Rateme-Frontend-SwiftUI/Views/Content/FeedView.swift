@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FeedView: View {
+    @EnvironmentObject var authService: AuthService
+    @ObservedObject var postService = PostService()
+    @ObservedObject var userService = UserService()
     var body: some View {
         NavigationView {
             ZStack {
@@ -22,8 +25,10 @@ struct FeedView: View {
                                 .padding(.leading, 5)
                             ScrollView(.horizontal,showsIndicators: false) {
                                 HStack {
-                                    CurrentUserStoryView()
-                                    UsersStoryView()
+                                    CurrentUserStoryView(item: authService.currentUser)
+                                    ForEach(userService.items,id: \._id) { item in
+                                        UsersStoryView(item: item)
+                                    }
                                 }.padding(.bottom, 20)
                             }
                         }.padding(5)
@@ -32,8 +37,13 @@ struct FeedView: View {
                             .padding(.leading, 25)
                             .padding(.trailing, 25)
                         
-                        PostCell().padding(.top, 10)
-                    }
+                        ForEach(postService.items,id: \._id) { item in
+                            PostCell(item: item).padding(.top, 10)
+                        }
+                    }.onAppear(perform: {
+                        postService.fetchPosts()
+                        userService.fetchUsers()
+                    })
                 }
             }.navigationBarItems(leading:Text("RateMe")
                 .font(Font.system(size: 20))
@@ -50,6 +60,7 @@ struct FeedView: View {
 }
 
 struct CurrentUserStoryView: View {
+    var item: Auth
     var body: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {
@@ -63,7 +74,7 @@ struct CurrentUserStoryView: View {
                         .cornerRadius(20)
                         .frame(width: 30, height: 30)
                         .padding(.top, -37)
-                    Text("Current User")
+                    Text(item.name)
                         .font(Font.system(size: 10))
                         .foregroundColor(Color.white)
                 }
@@ -76,6 +87,7 @@ struct CurrentUserStoryView: View {
 }
 
 struct UsersStoryView: View {
+    var item: User
     var body: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {
@@ -84,54 +96,17 @@ struct UsersStoryView: View {
                     .frame(maxWidth: UIScreen.main.bounds.width / 3.9, maxHeight: UIScreen.main.bounds.height / 5.3)
                     .blur(radius: 2)
                 VStack {
-                    Image("Photo2")
-                        .resizable()
+                    AsyncImage(url: URL(string: item.image)) { image in
+                        image
+                            .resizable()
+                    } placeholder: {
+                        //put your placeer here
+                    }
+                        
                         .cornerRadius(20)
                         .frame(width: 30, height: 30)
                         .padding(.top, -37)
-                    Text("User1")
-                        .font(Font.system(size: 10))
-                        .foregroundColor(Color.white)
-                }
-                .frame(maxWidth: UIScreen.main.bounds.width / 3.9, maxHeight: UIScreen.main.bounds.height / 15)
-                .background(Color.black.opacity(0.6))
-                
-            }.cornerRadius(20)
-        }.padding(.trailing, 12)
-        VStack {
-            ZStack(alignment: .bottomTrailing) {
-                Image("Photo")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.9, maxHeight: UIScreen.main.bounds.height / 5.3)
-                    .blur(radius: 2)
-                VStack {
-                    Image("Photo2")
-                        .resizable()
-                        .cornerRadius(20)
-                        .frame(width: 30, height: 30)
-                        .padding(.top, -37)
-                    Text("User1")
-                        .font(Font.system(size: 10))
-                        .foregroundColor(Color.white)
-                }
-                .frame(maxWidth: UIScreen.main.bounds.width / 3.9, maxHeight: UIScreen.main.bounds.height / 15)
-                .background(Color.black.opacity(0.6))
-                
-            }.cornerRadius(20)
-        }.padding(.trailing, 12)
-        VStack {
-            ZStack(alignment: .bottomTrailing) {
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 3.9, maxHeight: UIScreen.main.bounds.height / 5.3)
-                    .blur(radius: 2)
-                VStack {
-                    Image("Photo")
-                        .resizable()
-                        .cornerRadius(20)
-                        .frame(width: 30, height: 30)
-                        .padding(.top, -37)
-                    Text("User1")
+                    Text(item.name)
                         .font(Font.system(size: 10))
                         .foregroundColor(Color.white)
                 }
@@ -144,15 +119,22 @@ struct UsersStoryView: View {
 }
 
 struct PostCell: View {
+    @ObservedObject var postService = PostService()
+    var item: Post
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image("pic")
-                    .resizable()
+                AsyncImage(url: URL(string: item.user.image)){ image in
+                    image
+                        .resizable()
+                        // Error here
+                } placeholder: {
+                    //put your placeholder here
+                }
                     .frame(width: 55.0, height: 55.0)
                     .cornerRadius(27.5)
                 VStack(alignment: .leading) {
-                    Text("Test")
+                    Text(item.user.name)
                         .font(Font.system(size: 13.5))
                         .fontWeight(.bold)
                     Text("Tunis, Tunisia")
@@ -165,8 +147,13 @@ struct PostCell: View {
                     .padding(.trailing, 10)
             }.padding(.leading, 10)
             ZStack(alignment: .bottomTrailing) {
-                Image("Photo")
-                    .resizable()
+                AsyncImage(url: URL(string: item.image)) { image in
+                    image
+                        .resizable()
+                        // Error here
+                } placeholder: {
+                    //put your placeholder here
+                }
                     .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 3.5)
                 
                 HStack {
@@ -202,63 +189,7 @@ struct PostCell: View {
         }.frame(maxWidth: UIScreen.main.bounds.width)
         
         Divider()
-        
-        VStack(alignment: .leading) {
-            HStack {
-                Image("pic")
-                    .resizable()
-                    .frame(width: 55.0, height: 55.0)
-                    .cornerRadius(27.5)
-                VStack(alignment: .leading) {
-                    Text("Test")
-                        .font(Font.system(size: 13.5))
-                        .fontWeight(.bold)
-                    Text("Tunis, Tunisia")
-                        .font(Font.system(size: 13.5))
-                }
-                Spacer()
-                Image("More")
-                    .renderingMode(.template)
-                    .foregroundColor(Color("TextColor"))
-                    .padding(.trailing, 10)
-            }.padding(.leading, 10)
-            ZStack(alignment: .bottomTrailing) {
-                Image("Photo2")
-                    .resizable()
-                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 3.5)
-                
-                HStack {
-                    Image("Like")
-                        .renderingMode(.template)
-                        .foregroundColor(Color.white)
-                        .padding(.leading, 20)
-                    Text("798")
-                        .foregroundColor(Color.white)
-                    Image("Comment")
-                        .renderingMode(.template)
-                        .padding(.leading, 10)
-                        .foregroundColor(Color.white)
-                    Text("40")
-                        .foregroundColor(Color.white)
-                    Spacer()
-                    Image("Collect")
-                        .renderingMode(.template)
-                        .foregroundColor(Color.white)
-                        .padding(.trailing)
-                }
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height / 16)
-                .background(Color.black.opacity(0.4))
-            }
-            
-            Text("Comments here")
-                .lineLimit(4)
-                .font(Font.system(size: 13))
-                .foregroundColor(Color("TextColor"))
-                .padding(.leading, 5)
-            
-        
-        }.frame(maxWidth: UIScreen.main.bounds.width)
-        
+    
     }
 }
 

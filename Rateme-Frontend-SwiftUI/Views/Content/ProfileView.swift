@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject var authService: AuthService
     var body: some View {
         NavigationView {
             ZStack {
@@ -15,14 +16,14 @@ struct ProfileView: View {
                     .ignoresSafeArea(.all)
                 ScrollView {
                     VStack {
-                        HeaderSection()
-                        InformationSection()
+                        HeaderSection(item: authService.currentUser)
+                        InformationSection(item: authService.currentUser)
                         ContentSection()
                     }
                 }
                 
             }
-            .navigationBarItems(leading:Text("@Chawkiii___")
+            .navigationBarItems(leading:Text(authService.currentUser.name)
             .font(Font.system(size: 18))
             .fontWeight(.bold)
             .padding(.leading, 7)
@@ -41,6 +42,7 @@ struct ProfileView: View {
 }
 
 struct HeaderSection: View {
+    var item: Auth
     var body: some View {
             Image("Photo")
                 .resizable()
@@ -48,9 +50,13 @@ struct HeaderSection: View {
                 .cornerRadius(20)
                 .padding(.top, -40)
             HStack {
-                Image("pic")
-                    .resizable()
-                    .scaledToFit()
+                AsyncImage(url: URL(string: item.image)) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    //put your placeer here
+                }
                     .frame(maxWidth: UIScreen.main.bounds.width / 4)
                     .clipShape(Circle())
                     .shadow(radius: 10)
@@ -60,8 +66,9 @@ struct HeaderSection: View {
 }
 
 struct InformationSection: View {
+    var item: Auth
     var body: some View {
-        Text("Chawki Ferroukhi")
+        Text(item.name)
             .font(Font.system(size: 20))
             .fontWeight(.bold)
         Text("@Chawki___")
@@ -94,9 +101,7 @@ struct ContentSection: View {
     var body: some View {
         HStack {
             Button(action: {
-                withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
                     self.index = 0
-                }
             }) {
                 ZStack {
                     Text("All")
@@ -108,9 +113,7 @@ struct ContentSection: View {
                 }
             }.background(self.index == 0 ? Color("PrimaryColor") : Color.clear).clipShape(Capsule())
             Button(action: {
-                withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
                     self.index = 1
-                }
             }) {
                 ZStack {
                     Text("Photos")

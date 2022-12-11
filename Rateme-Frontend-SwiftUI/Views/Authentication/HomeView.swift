@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @State var index = 0
+    @State var register_email = ""
+    @State var register_password = ""
+    @State var register_name = ""
+    @State var register_cpassword = ""
+    @State var email = ""
+    @State var password = ""
+    
     var body : some View{
         NavigationView {
             ZStack {
@@ -80,10 +88,10 @@ struct HomeView: View {
                         .padding(.top, 25)
                     
                     if self.index == 0{
-                        LoginView()
+                        LoginView(email: $email, password: $password)
                     }
                     else{
-                        RegisterView()
+                        RegisterView(name: $register_name, email: $register_email, password: $register_password, cPassword: $register_cpassword)
                     }
                     
                     if self.index == 0{

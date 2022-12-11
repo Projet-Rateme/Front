@@ -48,7 +48,7 @@ struct OnBoardingView: View {
                    // ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
 
                         //  If you wish to take a photo from camera instead:
-                         ImagePicker(sourceType: .camera, selectedImage: self.$image)
+//                         ImagePicker(sourceType: .camera, selectedImage: self.$image)
                 }
                 VStack{
                     HStack(spacing: 15){

@@ -10,22 +10,46 @@ import SwiftUI
 struct RegisterView: View {
     @State private var eye = false
     @State private var confirm = false
-    @State var mail = ""
-    @State var pass = ""
-    @State var repass = ""
+    @ObservedObject var userService = UserService()
+    @Binding var name: String
+    @Binding var email: String
+    @Binding var password: String
+    @Binding var cPassword: String
        
     var body : some View{
         
         VStack{
             VStack{
+                Text(userService.message)
+                    .font(.callout)
+                    .foregroundColor(Color.red)
+                HStack(spacing: 15){
+                    
+                    Image(systemName: "person.fill")
+                        .foregroundColor(Color("TextColor"))
+                        .frame(width: 15, height: 18)
+                    TextField("Name", text: self.$name)
+                    
+                    if email != "" {
+                        Image(systemName: "checkmark").foregroundColor(.green)
+                    }
+                    else{
+                        Image(systemName: "xmark").foregroundColor(.red)
+                    }
+                    
+                }.padding(.vertical, 20)
+                    .frame(maxHeight: UIScreen.main.bounds.height / 15)
+                
+                Divider()
+                
                 HStack(spacing: 15){
                     
                     Image(systemName: "envelope")
                         .foregroundColor(Color("TextColor"))
                         .frame(width: 15, height: 18)
-                    TextField("Email Address", text: self.$mail)
+                    TextField("Email Address", text: self.$email)
                     
-                    if mail != "" {
+                    if email != "" {
                         Image(systemName: "checkmark").foregroundColor(.green)
                     }
                     else{
@@ -46,12 +70,11 @@ struct RegisterView: View {
                     
                     
                     if eye {
-                        TextField("Password", text: self.$pass)
+                        TextField("Password", text: self.$password)
                             .foregroundColor(Color("TextColor"))
-                        
                     }
                     else{
-                        SecureField("Password", text: self.$pass)
+                        SecureField("Password", text: self.$password)
                             .foregroundColor(Color("TextColor"))
                     }
                     
@@ -77,12 +100,12 @@ struct RegisterView: View {
                     
                     
                     if confirm {
-                        TextField("Confirm Password", text: self.$pass)
+                        TextField("Confirm Password", text: self.$password)
                             .foregroundColor(Color("TextColor"))
                         
                     }
                     else{
-                        SecureField("Confirm Password", text: self.$repass)
+                        SecureField("Confirm Password", text: self.$cPassword)
                             .foregroundColor(Color("TextColor"))
                     }
                     
@@ -105,7 +128,10 @@ struct RegisterView: View {
             .padding(.top, 25)
             
             Button(action: {
-                
+                if (name != "" && email != "" && password != "" && cPassword != "") {
+                        let parameters : [String: Any] = ["name": name, "email": email, "password": password, "confirmPassword": cPassword]
+                        userService.register(parameters: parameters)
+                }
             }) {
                 
                 Text("SIGNUP")
@@ -122,19 +148,12 @@ struct RegisterView: View {
             .padding(.bottom, -40)
             .shadow(radius: 15)
             
-            
-            if pass != repass{
-                Text("Please make sure your passwords match")
-                    .font(.callout)
-                    .foregroundColor(Color.red)
-            }
-            
         }.frame(maxWidth: UIScreen.main.bounds.width - 10)
     }
 }
 
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
-    }
-}
+//struct RegisterView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RegisterView()
+//    }
+//}

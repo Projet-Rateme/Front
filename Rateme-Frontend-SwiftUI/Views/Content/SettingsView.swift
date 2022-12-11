@@ -71,6 +71,7 @@ struct HeaderSectionView: View {
 }
 
 struct SettingsAndPrivacySectionView: View {
+    @EnvironmentObject var authService : AuthService
     var body: some View {
         Text("Account Settings")
             .fontWeight(.bold)
@@ -325,17 +326,32 @@ struct SettingsAndPrivacySectionView: View {
                 .padding(.bottom, 20)
         }
         
-        NavigationLink(destination: ProfileView()) {
+        Button (action: {
+            authService.logout()
+        }) {
             HStack {
                 Text("Logout")
                     .foregroundColor(Color("TextColor2"))
                     .padding(.vertical)
             }.frame(width: UIScreen.main.bounds.width - 10)
-            
         }.background(Color("ButtonColor"))
             .cornerRadius(8)
             .shadow(radius: 5)
             .padding(.top, 20)
+//        NavigationLink(destination: HomeView()) {
+//            HStack {
+//                Text("Logout")
+//                    .foregroundColor(Color("TextColor2"))
+//                    .padding(.vertical)
+//            }.frame(width: UIScreen.main.bounds.width - 10)
+//            
+//        }.background(Color("ButtonColor"))
+//            .cornerRadius(8)
+//            .shadow(radius: 5)
+//            .padding(.top, 20)
+//            .onTapGesture {
+//                authService.logout()
+//            }
         
         
     }
