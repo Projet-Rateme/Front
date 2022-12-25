@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5920A3032957D58500B711A2 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920A3022957D58500B711A2 /* TestView.swift */; };
+		5920A3052957DB7100B711A2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920A3042957DB7100B711A2 /* CustomButton.swift */; };
 		594578B0293D4C7C00EBB27F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 594578AF293D4C7C00EBB27F /* Alamofire */; };
 		597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221BA29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift */; };
 		597221BF29295CCA00193A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597221BE29295CCA00193A9F /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 		597221CD29295CCA00193A9F /* Rateme_Frontend_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221CC29295CCA00193A9F /* Rateme_Frontend_SwiftUITests.swift */; };
 		597221D729295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221D629295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift */; };
 		597221D929295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */; };
+		59DEE4B32957E6F90002F822 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4B22957E6F90002F822 /* CustomHeader.swift */; };
+		59DEE4B52958BDF00002F822 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4B42958BDEF0002F822 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5920A3022957D58500B711A2 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		5920A3042957DB7100B711A2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		597221B729295CC900193A9F /* Rateme-Frontend-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rateme-Frontend-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		597221BA29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIApp.swift; sourceTree = "<group>"; };
 		597221BE29295CCA00193A9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +50,8 @@
 		597221D229295CCA00193A9F /* Rateme-Frontend-SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rateme-Frontend-SwiftUIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		597221D629295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		59DEE4B22957E6F90002F822 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
+		59DEE4B42958BDEF0002F822 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,17 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		5920A3012957D57100B711A2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5920A3022957D58500B711A2 /* TestView.swift */,
+				5920A3042957DB7100B711A2 /* CustomButton.swift */,
+				59DEE4B22957E6F90002F822 /* CustomHeader.swift */,
+				59DEE4B42958BDEF0002F822 /* CustomTextField.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		597221AE29295CC900193A9F = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +121,7 @@
 		597221B929295CC900193A9F /* Rateme-Frontend-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				5920A3012957D57100B711A2 /* Utils */,
 				5920A3002954ACED00B711A2 /* ViewModels */,
 				59D2EFBE29453C4600E8EDCB /* Services */,
 				59D2EFBD29453C3C00E8EDCB /* Models */,
@@ -296,7 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5920A3052957DB7100B711A2 /* CustomButton.swift in Sources */,
+				59DEE4B32957E6F90002F822 /* CustomHeader.swift in Sources */,
+				5920A3032957D58500B711A2 /* TestView.swift in Sources */,
 				597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */,
+				59DEE4B52958BDF00002F822 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
