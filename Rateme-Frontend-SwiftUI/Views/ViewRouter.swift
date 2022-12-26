@@ -13,12 +13,15 @@ class ViewRouter: ObservableObject {
     init() {
 //        if !UserDefaults.standard.bool(forKey: "didLaunchBefore") {
 //            UserDefaults.standard.set(true, forKey: "didLaunchBefore")
-            currentPage = "OnBoardingView"
+        currentPage = .onBoardingView
 //        } else {
 //            currentPage = "homeView"
 //        }
     }
     
-    @Published var currentPage: String
+    @Published var currentPage: Views = .onBoardingView
+    @Published var currentLoginPage: LoginViews = .loginPage1
+    @Published var currentRegisterPage: RegisterViews = .registerPage1
+    @Published var currentForgotPasswordPage: ForgotPasswordViews = .forgotPasswordPage1
     
 }

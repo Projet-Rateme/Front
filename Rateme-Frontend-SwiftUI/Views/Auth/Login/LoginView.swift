@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var viewRouter: ViewRouter
     var body: some View {
         ZStack {
             Color("bgColor").ignoresSafeArea(.all)
@@ -29,12 +30,21 @@ struct LoginView: View {
                 
                 Divider()
                 VStack(spacing: 40) {
-                    Button(action: {}, label: {})
+                    Button(action: {
+                        withAnimation {
+                            viewRouter.currentLoginPage = .loginPage2
+                        }
+                    }, label: {})
                         .buttonStyle(CustomButton(text: "Continue with email", isPrimary: true, color: "PrimaryColor"))
                     HStack {
                         Text("Don't have an account?")
                         Text("Sign up")
                             .foregroundColor(Color("PrimaryColor"))
+                            .onTapGesture {
+                                withAnimation() {
+                                    viewRouter.currentPage = .registerView
+                                }
+                            }
                     }
                 }
                 
@@ -47,7 +57,10 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LoginView()
-            LoginView().colorScheme(.dark)
+                .environmentObject(ViewRouter())
+            LoginView()
+                .environmentObject(ViewRouter())
+                .colorScheme(.dark)
         }
     }
 }

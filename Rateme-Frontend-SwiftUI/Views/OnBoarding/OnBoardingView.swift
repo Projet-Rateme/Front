@@ -33,7 +33,7 @@ struct OnboardingView: View {
                     if selection == 2 {
                         withAnimation(.easeOut) {
                             Button(action: {
-                                self.viewRouter.currentPage = "TestView"
+                                self.viewRouter.currentPage = .loginView
                             }, label: {})
                                 .buttonStyle(CustomButton(text: "Get Started", isPrimary: true, color: "PrimaryColor"))
                         }

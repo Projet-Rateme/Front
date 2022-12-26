@@ -10,12 +10,14 @@ import SwiftUI
 struct CustomHeader: View {
     let text: String
     var body: some View {
-        Text(text)
-            .font(.system(size: 40))
-            .foregroundColor(Color("TextColor"))
-            .fontWeight(.semibold)
-            .lineLimit(nil)
-            .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+        VStack {
+            Text(text)
+                .font(.system(size: 45))
+                .foregroundColor(Color("TextColor"))
+                .fontWeight(.semibold)
+                .lineLimit(nil)
+                .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+        }
     }
 }
 
