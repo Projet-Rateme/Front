@@ -27,7 +27,6 @@
 		59DEE4CE2959EFD30002F822 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4CD2959EFD30002F822 /* AuthView.swift */; };
 		59DEE4D22959F6840002F822 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4D12959F6840002F822 /* RegisterView.swift */; };
 		59DEE4D42959F9050002F822 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4D32959F9050002F822 /* Views.swift */; };
-		59DEE4DA295A05D40002F822 /* LoginViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4D9295A05D40002F822 /* LoginViewRouter.swift */; };
 		59DEE4DC295A1B0C0002F822 /* RegisterStep2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4DB295A1B0B0002F822 /* RegisterStep2View.swift */; };
 		59DEE4DE295A1E260002F822 /* RegisterStep3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4DD295A1E260002F822 /* RegisterStep3View.swift */; };
 		59DEE4E0295A348B0002F822 /* RegisterStep4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4DF295A348B0002F822 /* RegisterStep4View.swift */; };
@@ -78,7 +77,6 @@
 		59DEE4CD2959EFD30002F822 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		59DEE4D12959F6840002F822 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		59DEE4D32959F9050002F822 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
-		59DEE4D9295A05D40002F822 /* LoginViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewRouter.swift; sourceTree = "<group>"; };
 		59DEE4DB295A1B0B0002F822 /* RegisterStep2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep2View.swift; sourceTree = "<group>"; };
 		59DEE4DD295A1E260002F822 /* RegisterStep3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep3View.swift; sourceTree = "<group>"; };
 		59DEE4DF295A348B0002F822 /* RegisterStep4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep4View.swift; sourceTree = "<group>"; };
@@ -271,25 +269,8 @@
 		59DEE4D6295A056B0002F822 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				59DEE4D8295A05BE0002F822 /* Register */,
-				59DEE4D7295A05B90002F822 /* Login */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		59DEE4D7295A05B90002F822 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				59DEE4D9295A05D40002F822 /* LoginViewRouter.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		59DEE4D8295A05BE0002F822 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Register;
 			sourceTree = "<group>";
 		};
 		59DEE4E1295A3C510002F822 /* ForgotPassword */ = {
@@ -457,7 +438,6 @@
 				59DEE4E5295A3C720002F822 /* ForgotPasswordStep2View.swift in Sources */,
 				59DEE4D42959F9050002F822 /* Views.swift in Sources */,
 				59DEE4CC295941A70002F822 /* LoginView.swift in Sources */,
-				59DEE4DA295A05D40002F822 /* LoginViewRouter.swift in Sources */,
 				59DEE4DE295A1E260002F822 /* RegisterStep3View.swift in Sources */,
 				59DEE4BE29591B680002F822 /* Main.swift in Sources */,
 				59DEE4B52958BDF00002F822 /* CustomTextField.swift in Sources */,
