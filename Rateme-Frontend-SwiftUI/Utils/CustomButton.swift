@@ -12,14 +12,13 @@ struct CustomButton: ButtonStyle {
     let isPrimary: Bool
     @State var icon: Image?
     let color: String
-    let hasIcon : Bool
 
     func makeBody(configuration: Self.Configuration) -> some View {
-            HStack(spacing: hasIcon ? 30 : 0) {
+            HStack {
                 if icon != nil {
                     icon?.resizable()
                         .scaledToFit()
-                        .frame(maxWidth: hasIcon ? 40 : 0, minHeight: 40)
+                        .frame(maxWidth: 40 , maxHeight: 40)
                 }
                 Text(text)
                     .fontWeight(.bold)

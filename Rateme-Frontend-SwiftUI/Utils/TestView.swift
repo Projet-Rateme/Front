@@ -16,9 +16,9 @@ struct TestView: View {
             Color("bgColor").ignoresSafeArea(.all)
             VStack {
                 Button(action: {}, label: {})
-                    .buttonStyle(CustomButton(text: "Get Started", isPrimary: true, color: "PrimaryColor", hasIcon: false))
+                    .buttonStyle(CustomButton(text: "Get Started", isPrimary: true, color: "PrimaryColor"))
                 Button(action: {}, label: {})
-                    .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("google"), color: "SecondaryColor", hasIcon: true))
+                    .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
                 CustomHeader(text: "Login to your account")
                     .padding(.leading, 45)
                 TextField("Name", text: $text)
