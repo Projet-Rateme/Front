@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct RegisterStep2View: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var readyToNavigate = false
     @State var email = ""
-    @EnvironmentObject var viewRouter: ViewRouter
     var body: some View {
         NavigationStack {
             ZStack {
@@ -21,8 +22,8 @@ struct RegisterStep2View: View {
                             .textFieldStyle(CustomTextField(icon: "envelope"))
                         Text("Resend code in 53 s")
                         Button(action: {
-                            withAnimation{
-                                viewRouter.currentRegisterPage = .registerPage3
+                            if email != "" {
+                                self.readyToNavigate = true
                             }
                         }, label: {})
                             .buttonStyle(CustomButton(text: "Verify", isPrimary: true, color: "PrimaryColor"))
@@ -52,19 +53,24 @@ struct RegisterStep2View: View {
                         }
                     }
                 }
-            }.toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            viewRouter.currentRegisterPage = .registerPage1
-                        }
-                    } label: {
-                        Image(systemName: "arrow.left")
-                    }
-                    .foregroundColor(Color("TextColor"))
-                    .fontWeight(.bold)
+            }.navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $readyToNavigate) {
+                    RegisterStep3View()
                 }
-            }
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button (action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                        {
+                            HStack {
+                                Image(systemName: "arrow.left")
+                            }
+                        }
+                        .foregroundColor(Color("TextColor"))
+                        .fontWeight(.bold)
+                    }
+                }
         }
     }
 }

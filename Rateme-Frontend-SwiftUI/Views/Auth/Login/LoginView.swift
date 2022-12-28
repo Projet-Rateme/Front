@@ -8,46 +8,45 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @State private var readyToNavigate = false
+    
     var body: some View {
-        ZStack {
-            Color("bgColor").ignoresSafeArea(.all)
-            
-            VStack(spacing: 40) {
-                Image("OnBoardingImage2")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: UIScreen.main.bounds.width / 1.5)
+        NavigationStack {
+            ZStack {
+                Color("bgColor").ignoresSafeArea(.all)
                 
                 VStack(spacing: 40) {
-                    Button(action: {}, label: {})
-                        .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
-                    Button(action: {}, label: {})
-                        .buttonStyle(CustomButton(text: "Connect with facebook", isPrimary: false, icon: Image("Facebook"), color: "SecondaryColor"))
-                    Button(action: {}, label: {})
-                        .buttonStyle(CustomButton(text: "Connect with apple", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
-                }
-                
-                Divider()
-                VStack(spacing: 40) {
-                    Button(action: {
-                        withAnimation {
-                            viewRouter.currentLoginPage = .loginPage2
-                        }
-                    }, label: {})
+                    Image("OnBoardingImage2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: UIScreen.main.bounds.width / 1.5)
+                    
+                    VStack(spacing: 40) {
+                        Button(action: {}, label: {})
+                            .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
+                        Button(action: {}, label: {})
+                            .buttonStyle(CustomButton(text: "Connect with facebook", isPrimary: false, icon: Image("Facebook"), color: "SecondaryColor"))
+                        Button(action: {}, label: {})
+                            .buttonStyle(CustomButton(text: "Connect with apple", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
+                    }
+                    
+                    Divider()
+                    VStack(spacing: 40) {
+                        Button(action: {
+                            self.readyToNavigate = true
+                        }, label: {})
                         .buttonStyle(CustomButton(text: "Continue with email", isPrimary: true, color: "PrimaryColor"))
-                    HStack {
-                        Text("Don't have an account?")
-                        Text("Sign up")
-                            .foregroundColor(Color("PrimaryColor"))
-                            .onTapGesture {
-                                withAnimation() {
-                                    viewRouter.currentPage = .registerView
-                                }
+                        HStack {
+                            Text("Don't have an account?")
+                            NavigationLink(destination: RegisterView()) {
+                                Text("Sign up")
+                                    .foregroundColor(Color("PrimaryColor"))
                             }
+                        }
                     }
                 }
-                
+            }.navigationDestination(isPresented: $readyToNavigate) {
+                AuthView()
             }
         }
     }

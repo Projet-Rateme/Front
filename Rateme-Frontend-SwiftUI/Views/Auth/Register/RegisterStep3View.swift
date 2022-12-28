@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RegisterStep3View: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var readyToNavigate = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -16,19 +17,21 @@ struct RegisterStep3View: View {
                 VStack {
                     Spacer()
                     Button(action: {
-                        withAnimation {
-                            viewRouter.currentRegisterPage = .registerPage4
-                        }
+                        self.readyToNavigate = true
                     }, label: {})
                         .buttonStyle(CustomButton(text: "Continue", isPrimary: true, color: "PrimaryColor"))
                 }
-            }.toolbar {
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationDestination(isPresented: $readyToNavigate) {
+                RegisterStep4View()
+            }
+            .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            viewRouter.currentRegisterPage = .registerPage2
-                        }
-                    } label: {
+                    Button (action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+                    {
                         HStack {
                             Image(systemName: "arrow.left")
                             Text("Select your country")

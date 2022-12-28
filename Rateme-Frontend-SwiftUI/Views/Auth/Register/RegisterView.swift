@@ -9,57 +9,74 @@ import SwiftUI
 
 struct RegisterView: View {
     @State var email = ""
-    @EnvironmentObject var viewRouter: ViewRouter
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var readyToNavigate = false
     var body: some View {
-        ZStack {
-            Color("bgColor").ignoresSafeArea(.all)
-            VStack (spacing: 200) {
-                CustomHeader(text: "Create your account")
-                VStack(spacing: 50) {
-                    TextField("Email Address", text: $email)
-                        .textFieldStyle(CustomTextField(icon: "envelope"))
-                    Button(action: {
-                        withAnimation {
-                            viewRouter.currentRegisterPage = .registerPage2
-                        }
-                    }, label: {})
+        NavigationStack {
+            ZStack {
+                Color("bgColor").ignoresSafeArea(.all)
+                VStack (spacing: 200) {
+                    CustomHeader(text: "Create your account")
+                    VStack(spacing: 50) {
+                        TextField("Email Address", text: $email)
+                            .textFieldStyle(CustomTextField(icon: "envelope"))
+                        Button(action: {
+                            if email != "" {
+                                self.readyToNavigate = true
+                            }
+                        }, label: {})
                         .buttonStyle(CustomButton(text: "Continue", isPrimary: true, color: "PrimaryColor"))
-                    VStack {
                         VStack {
-                            HStack(spacing: 5) {
-                                Text("By clicking continue you agree to our")
-                                    .font(Font.system(size: 12))
-                                    .foregroundColor(Color("TextColor"))
-                                Text("Privacy Policies")
-                                    .font(Font.system(size: 12))
-                                    .foregroundColor(Color("PrimaryColor"))
-                                    .fontWeight(.semibold)
+                            VStack {
+                                HStack(spacing: 5) {
+                                    Text("By clicking continue you agree to our")
+                                        .font(Font.system(size: 12))
+                                        .foregroundColor(Color("TextColor"))
+                                    Text("Privacy Policies")
+                                        .font(Font.system(size: 12))
+                                        .foregroundColor(Color("PrimaryColor"))
+                                        .fontWeight(.semibold)
+                                }
+                                HStack(spacing: 5) {
+                                    Text("and our")
+                                        .foregroundColor(Color("TextColor"))
+                                        .font(Font.system(size: 12))
+                                    Text("Terms and Conditions.")
+                                        .font(Font.system(size: 12))
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(Color("PrimaryColor"))
+                                }
                             }
-                            HStack(spacing: 5) {
-                                Text("and our")
-                                    .foregroundColor(Color("TextColor"))
-                                    .font(Font.system(size: 12))
-                                Text("Terms and Conditions.")
-                                    .font(Font.system(size: 12))
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(Color("PrimaryColor"))
+                            .multilineTextAlignment(.center)
+                            
+                        }
+                    }
+                    HStack {
+                        Text("Already have an account?")
+                        NavigationLink(destination: LoginView()) {
+                            Text("Sign in")
+                                .foregroundColor(Color("PrimaryColor"))
+                        }
+                    }.frame(alignment: .bottom)
+                }
+            }.navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $readyToNavigate) {
+                    RegisterStep2View()
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button (action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                        {
+                            HStack {
+                                Image(systemName: "arrow.left")
                             }
                         }
-                        .multilineTextAlignment(.center)
-                        
+                        .foregroundColor(Color("TextColor"))
+                        .fontWeight(.bold)
                     }
                 }
-                HStack {
-                    Text("Already have an account?")
-                    Text("Sign in")
-                        .foregroundColor(Color("PrimaryColor"))
-                        .onTapGesture {
-                            withAnimation() {
-                                viewRouter.currentPage = .loginView
-                            }
-                        }
-                }.frame(alignment: .bottom)
-            }
         }
     }
 }

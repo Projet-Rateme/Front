@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AuthView: View {
-    @EnvironmentObject var viewRouter: ViewRouter
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var email = ""
     @State var password = ""
     var body: some View {
@@ -23,14 +23,11 @@ struct AuthView: View {
                             .textFieldStyle(CustomTextField(icon: "envelope"))
                         SecureField("Password", text: $password)
                             .textFieldStyle(CustomTextField(icon: "lock"))
-                        Text("ForgotPassword?")
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color("PrimaryColor"))
-                            .onTapGesture {
-                                withAnimation {
-                                    viewRouter.currentPage = .forgotPasswordView
-                                }
-                            }
+                        NavigationLink(destination: ForgotPasswordStep1View()) {
+                            Text("ForgotPassword?")
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color("PrimaryColor"))
+                        }
                         Button(action: {}, label: {})
                             .buttonStyle(CustomButton(text: "Sign in", isPrimary: true, color: "PrimaryColor"))
                     }
@@ -55,19 +52,21 @@ struct AuthView: View {
                         }
                     }
                 }
-            }.toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            viewRouter.currentLoginPage = .loginPage1
+            }.navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button (action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                        {
+                            HStack {
+                                Image(systemName: "arrow.left")
+                            }
                         }
-                    } label: {
-                        Image(systemName: "arrow.left")
+                        .foregroundColor(Color("TextColor"))
+                        .fontWeight(.bold)
                     }
-                    .foregroundColor(Color("TextColor"))
-                    .fontWeight(.bold)
                 }
-            }
         }
     }
 }

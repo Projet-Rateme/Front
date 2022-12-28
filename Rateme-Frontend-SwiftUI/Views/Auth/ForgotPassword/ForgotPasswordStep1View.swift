@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ForgotPasswordStep1View: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var email = ""
-    @EnvironmentObject var viewRouter: ViewRouter
+    @State var isActive = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -29,22 +30,26 @@ struct ForgotPasswordStep1View: View {
                     VStack(spacing: 50) {
                         TextField("Email Address", text: $email)
                             .textFieldStyle(CustomTextField(icon: "envelope"))
+                                   
                         Button(action: {
-                            withAnimation {
-                                viewRouter.currentForgotPasswordPage = .forgotPasswordPage2
+                            if (self.email != "") {
+                                self.isActive = true
                             }
                         }, label: {})
                         .buttonStyle(CustomButton(text: "Continue", isPrimary: true, color: "PrimaryColor"))
                     }
                 }
-            }.toolbar {
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationDestination(isPresented: $isActive) {
+                ForgotPasswordStep2View()
+            }
+            .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            viewRouter.currentPage = .loginView
-                            viewRouter.currentLoginPage = .loginPage2
-                        }
-                    } label: {
+                    Button (action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+                    {
                         HStack {
                             Image(systemName: "arrow.left")
                             Text("Forgot password")

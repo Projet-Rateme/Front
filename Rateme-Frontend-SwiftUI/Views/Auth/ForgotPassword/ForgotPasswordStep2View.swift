@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ForgotPasswordStep2View: View {
-    @EnvironmentObject var viewRouter : ViewRouter
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var readyToNavigate = false
     var body: some View {
         NavigationStack {
             ZStack {
@@ -65,31 +66,32 @@ struct ForgotPasswordStep2View: View {
                             .cornerRadius(32)
                         
                         Button(action: {
-                            withAnimation {
-                                viewRouter.currentForgotPasswordPage = .forgotPasswordPage1
-                            }
+                            self.readyToNavigate = true
                         }, label: {})
                         .buttonStyle(CustomButton(text: "Continue", isPrimary: true, color: "PrimaryColor"))
                     }
                 }
                 .foregroundColor(.white)
                 .padding()
-            }.toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            viewRouter.currentForgotPasswordPage = .forgotPasswordPage1
-                        }
-                    } label: {
-                        HStack {
-                            Image(systemName: "arrow.left")
-                            Text("Forgot password")
-                        }
-                    }
-                    .foregroundColor(Color("TextColor"))
-                    .fontWeight(.bold)
+            }.navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $readyToNavigate) {
+                    ForgotPasswordStep3View()
                 }
-            }
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button (action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        })
+                        {
+                            HStack {
+                                Image(systemName: "arrow.left")
+                                Text("Forgot password")
+                            }
+                        }
+                        .foregroundColor(Color("TextColor"))
+                        .fontWeight(.bold)
+                    }
+                }
         }
     }
 }

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RegisterStep4View: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var viewRouter: ViewRouter
+    @State private var readyToNavigate = false
     @State var firstname = ""
     var body: some View {
         NavigationStack {
@@ -34,23 +36,21 @@ struct RegisterStep4View: View {
                     TextField("Phone Number", text: $firstname)
                         .textFieldStyle(CustomTextField(icon: "phone"))
                     Button(action: {
-                        withAnimation {
-                            viewRouter.currentPage = .loginView
-                            viewRouter.currentLoginPage = .loginPage2
-                        }
+                        self.presentationMode.wrappedValue.dismiss()
                     }, label: {})
                         .buttonStyle(CustomButton(text: "Sign up", isPrimary: true, color: "PrimaryColor"))
                 }
-            }.toolbar {
+            }
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Button {
-                        withAnimation {
-                            viewRouter.currentRegisterPage = .registerPage3
-                        }
-                    } label: {
+                    Button (action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+                    {
                         HStack {
                             Image(systemName: "arrow.left")
-                            Text("Profile Information")
+                            Text("Profile information")
                         }
                     }
                     .foregroundColor(Color("TextColor"))
