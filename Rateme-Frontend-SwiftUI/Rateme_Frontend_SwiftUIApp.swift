@@ -12,6 +12,7 @@ struct Rateme_Frontend_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             Main().environmentObject(ViewRouter())
+                .environmentObject(AuthViewModel())
         }
     }
 }

@@ -6,26 +6,34 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
 struct RegisterView: View {
-    @State var email = ""
+    @EnvironmentObject var Auth : AuthViewModel
+    @EnvironmentObject var viewRouter : ViewRouter
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var readyToNavigate = false
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("bgColor").ignoresSafeArea(.all)
                 VStack (spacing: 200) {
-                    CustomHeader(text: "Create your account")
+                    Spacer()
                     VStack(spacing: 50) {
-                        TextField("Email Address", text: $email)
-                            .textFieldStyle(CustomTextField(icon: "envelope"))
+                        Spacer()
+                        Text(Auth.message)
+                            .foregroundColor(.red)
+                            .fontWeight(.semibold)
+                        TextField("Email Address", text: $Auth.register_email)
+                            .textFieldStyle(CustomTextField(icon: "envelope", text: $Auth.register_email))
                         Button(action: {
-                            if email != "" {
-                                self.readyToNavigate = true
+                            if Auth.register_email != "" {
+                                Auth.isLoading = true
+                                Auth.sendEmail()
                             }
                         }, label: {})
                         .buttonStyle(CustomButton(text: "Continue", isPrimary: true, color: "PrimaryColor"))
+                        .disabled(Auth.isLoading)
+                        
                         VStack {
                             VStack {
                                 HStack(spacing: 5) {
@@ -51,32 +59,29 @@ struct RegisterView: View {
                             
                         }
                     }
+                    Spacer()
                     HStack {
                         Text("Already have an account?")
-                        NavigationLink(destination: LoginView()) {
-                            Text("Sign in")
-                                .foregroundColor(Color("PrimaryColor"))
-                        }
+                        Text("Sign in")
+                            .foregroundColor(Color("PrimaryColor"))
+                            .onTapGesture {
+                                viewRouter.currentPage = .loginView
+                            }
                     }.frame(alignment: .bottom)
+                    Spacer()
                 }
             }.navigationBarBackButtonHidden(true)
-                .navigationDestination(isPresented: $readyToNavigate) {
+                .navigationDestination(isPresented: $Auth.readyToNavigate) {
                     RegisterStep2View()
                 }
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button (action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        })
-                        {
-                            HStack {
-                                Image(systemName: "arrow.left")
-                            }
-                        }
-                        .foregroundColor(Color("TextColor"))
-                        .fontWeight(.bold)
-                    }
-                }
+                
+//            ZStack {
+//                if Auth.alert {
+//                    Color.black.opacity(0.5)
+//                    .edgesIgnoringSafeArea(.all)
+//                    .blur(radius: 10)
+//                }
+//            }
         }
     }
 }

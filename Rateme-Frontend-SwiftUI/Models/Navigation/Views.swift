@@ -8,7 +8,16 @@
 import Foundation
 
 enum Views {
-    //case homePage
+    case registerView
     case onBoardingView
     case loginView
+    case mainView
+}
+
+enum AppViews {
+    case feedView
+    case profileView
+    case discoverView
+    case notificationsView
+    case newPostView
 }

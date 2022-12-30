@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AuthView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State var email = ""
-    @State var password = ""
+    @EnvironmentObject var Auth : AuthViewModel
+    @EnvironmentObject var viewRouter : ViewRouter
     var body: some View {
         NavigationStack {
             ZStack {
@@ -18,17 +18,26 @@ struct AuthView: View {
                 VStack(spacing: 60) {
                     CustomHeader(text: "Login to your account")
                         .padding(.leading, 45)
+                    Text(Auth.message)
+                        .foregroundColor(.red)
+                        .fontWeight(.semibold)
                     VStack(alignment: .leading, spacing: 40) {
-                        TextField("Email address", text: $email)
-                            .textFieldStyle(CustomTextField(icon: "envelope"))
-                        SecureField("Password", text: $password)
-                            .textFieldStyle(CustomTextField(icon: "lock"))
+                        TextField("Email address", text: $Auth.login_email)
+                            .textFieldStyle(CustomTextField(icon: "envelope", text: $Auth.login_email))
+                        SecureField("Password", text: $Auth.login_password)
+                            .textFieldStyle(CustomTextField(icon: "lock", text: $Auth.login_password))
                         NavigationLink(destination: ForgotPasswordStep1View()) {
                             Text("ForgotPassword?")
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color("PrimaryColor"))
                         }
-                        Button(action: {}, label: {})
+                        Button(action: {
+                            if (Auth.login_email != "" && Auth.login_password != "") {
+                                Auth.alert = true
+                                Auth.isLoading = true
+                                Auth.login()
+                            }
+                        }, label: {})
                             .buttonStyle(CustomButton(text: "Sign in", isPrimary: true, color: "PrimaryColor"))
                     }
                     
@@ -53,6 +62,8 @@ struct AuthView: View {
                     }
                 }
             }.navigationBarBackButtonHidden(true)
+                .blur(radius: Auth.alert ? 2 : 0)
+                .customAlert(isPresented: $Auth.alert, hasIndicator: $Auth.isLoading, title: "Logging in", placeholder: "Placeholder")
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarLeading) {
                         Button (action: {
@@ -71,11 +82,11 @@ struct AuthView: View {
     }
 }
 
-struct AuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AuthView()
-            AuthView().colorScheme(.dark)
-        }
-    }
-}
+//struct AuthView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            AuthView()
+//            AuthView().colorScheme(.dark)
+//        }
+//    }
+//}

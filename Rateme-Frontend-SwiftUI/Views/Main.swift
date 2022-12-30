@@ -9,13 +9,25 @@ import SwiftUI
 
 struct Main: View {
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var Auth : AuthViewModel
         
     var body: some View {
-        switch viewRouter.currentPage {
-        case .onBoardingView:
-            OnboardingView()
-        case .loginView:
-            LoginView()
+        if !Auth.isAuthenticated {
+            switch viewRouter.currentPage {
+            case .onBoardingView:
+                OnboardingView()
+            case .loginView:
+                LoginView()
+            case .registerView:
+                RegisterView()
+            case .mainView:
+                HomeView()
+            }
+        } else {
+            withAnimation {
+                AppView()
+                    .transition(.slide)
+            }
         }
     }
 }

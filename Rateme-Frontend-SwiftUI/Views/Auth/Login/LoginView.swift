@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var viewRouter : ViewRouter
     @State private var readyToNavigate = false
     
     var body: some View {
@@ -23,17 +24,18 @@ struct LoginView: View {
                     
                     VStack(spacing: 40) {
                         Button(action: {}, label: {})
-                            .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
+                            .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("Google"), color: "TextFieldColor"))
                         Button(action: {}, label: {})
-                            .buttonStyle(CustomButton(text: "Connect with facebook", isPrimary: false, icon: Image("Facebook"), color: "SecondaryColor"))
+                            .buttonStyle(CustomButton(text: "Connect with facebook", isPrimary: false, icon: Image("Facebook"), color: "TextFieldColor"))
                         Button(action: {}, label: {})
-                            .buttonStyle(CustomButton(text: "Connect with apple", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
+                            .buttonStyle(CustomButton(text: "Connect with apple", isPrimary: false, icon: Image("Google"), color: "TextFieldColor"))
                     }
                     
                     Divider()
                     VStack(spacing: 40) {
                         Button(action: {
                             self.readyToNavigate = true
+                            
                         }, label: {})
                         .buttonStyle(CustomButton(text: "Continue with email", isPrimary: true, color: "PrimaryColor"))
                         HStack {
@@ -41,6 +43,9 @@ struct LoginView: View {
                             NavigationLink(destination: RegisterView()) {
                                 Text("Sign up")
                                     .foregroundColor(Color("PrimaryColor"))
+                                    .onTapGesture {
+                                        viewRouter.currentPage = .registerView
+                                    }
                             }
                         }
                     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
 struct TestView: View {
     
@@ -21,10 +22,26 @@ struct TestView: View {
                     .buttonStyle(CustomButton(text: "Connect with google", isPrimary: false, icon: Image("Google"), color: "SecondaryColor"))
                 CustomHeader(text: "Login to your account")
                     .padding(.leading, 45)
-                TextField("Name", text: $text)
-                    .textFieldStyle(CustomTextField(icon: "person"))
-                SecureField("Password", text: $text)
-                    .textFieldStyle(CustomTextField(icon: "lock"))
+//                TextField("Name", text: $text)
+//                    .textFieldStyle(CustomTextField(icon: "person"))
+//                SecureField("Password", text: $text)
+//                    .textFieldStyle(CustomTextField(icon: "lock"))
+                
+                ZStack {
+                    Color("TextFieldColor")
+                    VStack {
+                        Text("title")
+                            .foregroundColor(Color("TextColor"))
+                    }
+                }
+                .background(.gray)
+                .frame(width: 300, height: 200)
+                .cornerRadius(20)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.quaternary, lineWidth: 1)
+                }
+                
             }
         }
         

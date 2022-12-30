@@ -30,10 +30,22 @@
 		59DEE4DC295A1B0C0002F822 /* RegisterStep2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4DB295A1B0B0002F822 /* RegisterStep2View.swift */; };
 		59DEE4DE295A1E260002F822 /* RegisterStep3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4DD295A1E260002F822 /* RegisterStep3View.swift */; };
 		59DEE4E0295A348B0002F822 /* RegisterStep4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4DF295A348B0002F822 /* RegisterStep4View.swift */; };
-		59DEE4E3295A3C660002F822 /* ForgotPasswordStep1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4E2295A3C660002F822 /* ForgotPasswordStep1View.swift */; };
-		59DEE4E5295A3C720002F822 /* ForgotPasswordStep2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4E4295A3C720002F822 /* ForgotPasswordStep2View.swift */; };
+		59DEE4E3295A3C660002F822 /* ForgotPasswordStep2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4E2295A3C660002F822 /* ForgotPasswordStep2View.swift */; };
+		59DEE4E5295A3C720002F822 /* ForgotPasswordStep1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4E4295A3C720002F822 /* ForgotPasswordStep1View.swift */; };
 		59DEE4E7295A3C840002F822 /* ForgotPasswordStep3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4E6295A3C840002F822 /* ForgotPasswordStep3View.swift */; };
 		59DEE4E9295A3C920002F822 /* ForgotPasswordStep4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4E8295A3C920002F822 /* ForgotPasswordStep4View.swift */; };
+		59DEE4EE295D0CE90002F822 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4ED295D0CE90002F822 /* Network.swift */; };
+		59DEE4F2295D0E880002F822 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4F1295D0E880002F822 /* AuthService.swift */; };
+		59DEE4F5295D11750002F822 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4F4295D11750002F822 /* AuthModel.swift */; };
+		59DEE4F8295D11C10002F822 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4F7295D11C10002F822 /* UserModel.swift */; };
+		59DEE4FA295D19870002F822 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4F9295D19870002F822 /* AuthViewModel.swift */; };
+		59DEE4FC295D1A780002F822 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4FB295D1A780002F822 /* HomeView.swift */; };
+		59DEE4FF295DD6680002F822 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 59DEE4FE295DD6680002F822 /* ActivityIndicatorView */; };
+		59DEE501295DDC600002F822 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE500295DDC600002F822 /* CustomAlert.swift */; };
+		59DEE503295E7C940002F822 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE502295E7C940002F822 /* AppView.swift */; };
+		59DEE505295E81B90002F822 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE504295E81B90002F822 /* FeedView.swift */; };
+		59DEE507295E82BA0002F822 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE506295E82BA0002F822 /* ProfileView.swift */; };
+		59DEE509295E882A0002F822 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE508295E882A0002F822 /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,10 +92,21 @@
 		59DEE4DB295A1B0B0002F822 /* RegisterStep2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep2View.swift; sourceTree = "<group>"; };
 		59DEE4DD295A1E260002F822 /* RegisterStep3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep3View.swift; sourceTree = "<group>"; };
 		59DEE4DF295A348B0002F822 /* RegisterStep4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterStep4View.swift; sourceTree = "<group>"; };
-		59DEE4E2295A3C660002F822 /* ForgotPasswordStep1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordStep1View.swift; sourceTree = "<group>"; };
-		59DEE4E4295A3C720002F822 /* ForgotPasswordStep2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordStep2View.swift; sourceTree = "<group>"; };
+		59DEE4E2295A3C660002F822 /* ForgotPasswordStep2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordStep2View.swift; sourceTree = "<group>"; };
+		59DEE4E4295A3C720002F822 /* ForgotPasswordStep1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordStep1View.swift; sourceTree = "<group>"; };
 		59DEE4E6295A3C840002F822 /* ForgotPasswordStep3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordStep3View.swift; sourceTree = "<group>"; };
 		59DEE4E8295A3C920002F822 /* ForgotPasswordStep4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordStep4View.swift; sourceTree = "<group>"; };
+		59DEE4ED295D0CE90002F822 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		59DEE4F1295D0E880002F822 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		59DEE4F4295D11750002F822 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		59DEE4F7295D11C10002F822 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		59DEE4F9295D19870002F822 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		59DEE4FB295D1A780002F822 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		59DEE500295DDC600002F822 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		59DEE502295E7C940002F822 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		59DEE504295E81B90002F822 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		59DEE506295E82BA0002F822 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		59DEE508295E882A0002F822 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DEE4FF295DD6680002F822 /* ActivityIndicatorView in Frameworks */,
 				594578B0293D4C7C00EBB27F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				59DEE4C529592CAD0002F822 /* OnBoardingViewModel.swift */,
+				59DEE4F9295D19870002F822 /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -128,6 +153,8 @@
 				59DEE4B22957E6F90002F822 /* CustomHeader.swift */,
 				59DEE4B42958BDEF0002F822 /* CustomTextField.swift */,
 				59DEE4C729592E450002F822 /* OnBoardingPage.swift */,
+				59DEE500295DDC600002F822 /* CustomAlert.swift */,
+				59DEE508295E882A0002F822 /* PostCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -155,7 +182,7 @@
 		597221B929295CC900193A9F /* Rateme-Frontend-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				59DEE4D6295A056B0002F822 /* Managers */,
+				59DEE4EC295D0CB20002F822 /* Services */,
 				5920A3012957D57100B711A2 /* Utils */,
 				5920A3002954ACED00B711A2 /* ViewModels */,
 				59D2EFBD29453C3C00E8EDCB /* Models */,
@@ -208,6 +235,8 @@
 		59D2EFBD29453C3C00E8EDCB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				59DEE4F6295D11B50002F822 /* User */,
+				59DEE4F3295D116A0002F822 /* Auth */,
 				59DEE4D5295A04D90002F822 /* Navigation */,
 			);
 			path = Models;
@@ -216,6 +245,9 @@
 		59DEE4B62958CB770002F822 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				59DEE502295E7C940002F822 /* AppView.swift */,
+				59DEE504295E81B90002F822 /* FeedView.swift */,
+				59DEE506295E82BA0002F822 /* ProfileView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -226,6 +258,7 @@
 				59DEE4E1295A3C510002F822 /* ForgotPassword */,
 				59DEE4D02959F66A0002F822 /* Register */,
 				59DEE4CF2959F6560002F822 /* Login */,
+				59DEE4FB295D1A780002F822 /* HomeView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -266,22 +299,40 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		59DEE4D6295A056B0002F822 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		59DEE4E1295A3C510002F822 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
-				59DEE4E2295A3C660002F822 /* ForgotPasswordStep1View.swift */,
-				59DEE4E4295A3C720002F822 /* ForgotPasswordStep2View.swift */,
+				59DEE4E2295A3C660002F822 /* ForgotPasswordStep2View.swift */,
+				59DEE4E4295A3C720002F822 /* ForgotPasswordStep1View.swift */,
 				59DEE4E6295A3C840002F822 /* ForgotPasswordStep3View.swift */,
 				59DEE4E8295A3C920002F822 /* ForgotPasswordStep4View.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		59DEE4EC295D0CB20002F822 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				59DEE4ED295D0CE90002F822 /* Network.swift */,
+				59DEE4F1295D0E880002F822 /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		59DEE4F3295D116A0002F822 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				59DEE4F4295D11750002F822 /* AuthModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		59DEE4F6295D11B50002F822 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				59DEE4F7295D11C10002F822 /* UserModel.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +353,7 @@
 			name = "Rateme-Frontend-SwiftUI";
 			packageProductDependencies = (
 				594578AF293D4C7C00EBB27F /* Alamofire */,
+				59DEE4FE295DD6680002F822 /* ActivityIndicatorView */,
 			);
 			productName = "Rateme-Frontend-SwiftUI";
 			productReference = 597221B729295CC900193A9F /* Rateme-Frontend-SwiftUI.app */;
@@ -377,6 +429,7 @@
 			mainGroup = 597221AE29295CC900193A9F;
 			packageReferences = (
 				594578AE293D4C7C00EBB27F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				59DEE4FD295DD6680002F822 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = 597221B829295CC900193A9F /* Products */;
 			projectDirPath = "";
@@ -421,21 +474,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				59DEE4E0295A348B0002F822 /* RegisterStep4View.swift in Sources */,
-				59DEE4E3295A3C660002F822 /* ForgotPasswordStep1View.swift in Sources */,
+				59DEE4FC295D1A780002F822 /* HomeView.swift in Sources */,
+				59DEE4E3295A3C660002F822 /* ForgotPasswordStep2View.swift in Sources */,
 				59DEE4DC295A1B0C0002F822 /* RegisterStep2View.swift in Sources */,
 				59DEE4E7295A3C840002F822 /* ForgotPasswordStep3View.swift in Sources */,
+				59DEE4F5295D11750002F822 /* AuthModel.swift in Sources */,
 				59DEE4C829592E450002F822 /* OnBoardingPage.swift in Sources */,
 				59DEE4E9295A3C920002F822 /* ForgotPasswordStep4View.swift in Sources */,
 				59DEE4C029591B820002F822 /* ViewRouter.swift in Sources */,
 				59DEE4D22959F6840002F822 /* RegisterView.swift in Sources */,
+				59DEE505295E81B90002F822 /* FeedView.swift in Sources */,
 				59DEE4CE2959EFD30002F822 /* AuthView.swift in Sources */,
 				59DEE4C629592CAD0002F822 /* OnBoardingViewModel.swift in Sources */,
 				5920A3052957DB7100B711A2 /* CustomButton.swift in Sources */,
+				59DEE503295E7C940002F822 /* AppView.swift in Sources */,
+				59DEE509295E882A0002F822 /* PostCell.swift in Sources */,
 				59DEE4B32957E6F90002F822 /* CustomHeader.swift in Sources */,
 				5920A3032957D58500B711A2 /* TestView.swift in Sources */,
 				59DEE4BA29591ACE0002F822 /* OnBoardingView.swift in Sources */,
+				59DEE507295E82BA0002F822 /* ProfileView.swift in Sources */,
+				59DEE4F2295D0E880002F822 /* AuthService.swift in Sources */,
+				59DEE501295DDC600002F822 /* CustomAlert.swift in Sources */,
+				59DEE4FA295D19870002F822 /* AuthViewModel.swift in Sources */,
 				597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */,
-				59DEE4E5295A3C720002F822 /* ForgotPasswordStep2View.swift in Sources */,
+				59DEE4F8295D11C10002F822 /* UserModel.swift in Sources */,
+				59DEE4E5295A3C720002F822 /* ForgotPasswordStep1View.swift in Sources */,
+				59DEE4EE295D0CE90002F822 /* Network.swift in Sources */,
 				59DEE4D42959F9050002F822 /* Views.swift in Sources */,
 				59DEE4CC295941A70002F822 /* LoginView.swift in Sources */,
 				59DEE4DE295A1E260002F822 /* RegisterStep3View.swift in Sources */,
@@ -794,6 +858,14 @@
 				kind = branch;
 			};
 		};
+		59DEE4FD295DD6680002F822 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -801,6 +873,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 594578AE293D4C7C00EBB27F /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		59DEE4FE295DD6680002F822 /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 59DEE4FD295DD6680002F822 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

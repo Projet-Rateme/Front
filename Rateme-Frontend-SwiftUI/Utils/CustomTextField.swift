@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CustomTextField: TextFieldStyle {
     let icon: String
+    //@Binding var empty: Bool
+    @Binding var text : String
     
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
@@ -16,8 +18,14 @@ struct CustomTextField: TextFieldStyle {
             HStack {
                 Image(systemName: icon)
                 configuration
+                if !text.isEmpty {
+                    Image(systemName: "checkmark").foregroundColor(.green)
+                        .padding(.trailing)
+                } else {
+                    Image(systemName: "xmark").foregroundColor(.red)
+                        .padding(.trailing)
+                }
             }
-            
             .padding(.leading)
             .foregroundColor(Color("TextColor"))
         }.frame(width: UIScreen.main.bounds.width / 1.2,

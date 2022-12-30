@@ -10,8 +10,8 @@ import SwiftUI
 struct RegisterStep4View: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var viewRouter: ViewRouter
-    @State private var readyToNavigate = false
-    @State var firstname = ""
+    @EnvironmentObject var Auth : AuthViewModel
+    @State var empty = true
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,23 +25,31 @@ struct RegisterStep4View: View {
                     }
                     .frame(maxWidth: UIScreen.main.bounds.width / 2)
                     .clipShape(Circle())
-                    TextField("Firstname", text: $firstname)
-                        .textFieldStyle(CustomTextField(icon: "person"))
-                    TextField("Lastname", text: $firstname)
-                        .textFieldStyle(CustomTextField(icon: "person"))
-                    TextField("Email Address", text: $firstname)
-                        .textFieldStyle(CustomTextField(icon: "person"))
-                    TextField("Date of birth", text: $firstname)
-                        .textFieldStyle(CustomTextField(icon: "person"))
-                    TextField("Phone Number", text: $firstname)
-                        .textFieldStyle(CustomTextField(icon: "phone"))
+                    Text(Auth.message)
+                        .foregroundColor(.red)
+                        .fontWeight(.semibold)
+                    TextField("Firstname", text: $Auth.register_firstname)
+                        .textFieldStyle(CustomTextField(icon: "person", text: $Auth.register_firstname))
+                    TextField("Lastname", text: $Auth.register_lastname)
+                        .textFieldStyle(CustomTextField(icon: "person", text: $Auth.register_lastname))
+                    SecureField("Password", text: $Auth.register_password)
+                        .textFieldStyle(CustomTextField(icon: "lock", text: $Auth.register_password))
+                    SecureField("Confirm Password", text: $Auth.register_confirmPassword)
+                        .textFieldStyle(CustomTextField(icon: "lock", text: $Auth.register_confirmPassword))
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        Auth.isLoading = true
+                        Auth.alert = true
+                        Auth.register()
+                        if Auth.navigateToHome {
+                            viewRouter.currentPage = .loginView
+                        }
                     }, label: {})
                         .buttonStyle(CustomButton(text: "Sign up", isPrimary: true, color: "PrimaryColor"))
                 }
             }
             .navigationBarBackButtonHidden(true)
+            .blur(radius: Auth.alert ? 2 : 0)
+            .customAlert(isPresented: $Auth.alert, hasIndicator: $Auth.isLoading, title: "Account registration", placeholder: "Placeholder")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button (action: {

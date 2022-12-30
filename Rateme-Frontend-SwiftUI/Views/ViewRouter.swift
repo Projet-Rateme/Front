@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class ViewRouter: ObservableObject {
-
+    
     init() {
         if !UserDefaults.standard.bool(forKey: "didLaunchBefore") {
             UserDefaults.standard.set(true, forKey: "didLaunchBefore")
@@ -19,7 +19,8 @@ class ViewRouter: ObservableObject {
         }
     }
     
-    @Published var currentPage: Views = .onBoardingView
+    @Published var currentPage: Views = .loginView
+    @Published var currentMainPage : AppViews = .feedView
 
     
 }
