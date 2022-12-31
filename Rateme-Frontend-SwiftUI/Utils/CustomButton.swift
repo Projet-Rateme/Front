@@ -24,14 +24,20 @@ struct CustomButton: ButtonStyle {
                         .scaledToFit()
                         .frame(maxWidth: 40 , maxHeight: 40)
                 }
-                if !Auth.isLoading {
+                if isPrimary {
+                    if !Auth.isLoading  {
+                        Text(text)
+                            .fontWeight(.bold)
+                            .foregroundColor(isPrimary ? Color(.white) : Color("TextColor"))
+                    } else {
+                        ActivityIndicatorView(isVisible: $Auth.isLoading, type: .default())
+                            .foregroundColor(Color("TextColor"))
+                            .frame(width: 20, height: 20)
+                    }
+                } else {
                     Text(text)
                         .fontWeight(.bold)
                         .foregroundColor(isPrimary ? Color(.white) : Color("TextColor"))
-                } else {
-                    ActivityIndicatorView(isVisible: $Auth.isLoading, type: .default())
-                        .foregroundColor(Color("TextColor"))
-                        .frame(width: 20, height: 20)
                 }
             }.frame(maxWidth: UIScreen.main.bounds.width / 1.2,
                     minHeight: UIScreen.main.bounds.width / 7, alignment: .center)

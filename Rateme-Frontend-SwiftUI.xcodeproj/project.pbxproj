@@ -10,6 +10,12 @@
 		5920A3032957D58500B711A2 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920A3022957D58500B711A2 /* TestView.swift */; };
 		5920A3052957DB7100B711A2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920A3042957DB7100B711A2 /* CustomButton.swift */; };
 		594578B0293D4C7C00EBB27F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 594578AF293D4C7C00EBB27F /* Alamofire */; };
+		59610A66295F283D0093C45D /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610A65295F283D0093C45D /* PostService.swift */; };
+		59610A69295F2BBE0093C45D /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610A68295F2BBE0093C45D /* PostModel.swift */; };
+		59610A6B295F2CD90093C45D /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610A6A295F2CD90093C45D /* PostViewModel.swift */; };
+		59610A71295FCBFF0093C45D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610A70295FCBFF0093C45D /* ProfileHeaderView.swift */; };
+		59610A73295FD2C20093C45D /* ProfileTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610A72295FD2C20093C45D /* ProfileTabBarView.swift */; };
+		59610A75295FD78F0093C45D /* ProfilePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610A74295FD78F0093C45D /* ProfilePostsView.swift */; };
 		597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221BA29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift */; };
 		597221BF29295CCA00193A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597221BE29295CCA00193A9F /* Assets.xcassets */; };
 		597221C329295CCA00193A9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597221C229295CCA00193A9F /* Preview Assets.xcassets */; };
@@ -68,6 +74,12 @@
 /* Begin PBXFileReference section */
 		5920A3022957D58500B711A2 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		5920A3042957DB7100B711A2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		59610A65295F283D0093C45D /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		59610A68295F2BBE0093C45D /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		59610A6A295F2CD90093C45D /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		59610A70295FCBFF0093C45D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		59610A72295FD2C20093C45D /* ProfileTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabBarView.swift; sourceTree = "<group>"; };
+		59610A74295FD78F0093C45D /* ProfilePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsView.swift; sourceTree = "<group>"; };
 		597221B729295CC900193A9F /* Rateme-Frontend-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rateme-Frontend-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		597221BA29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIApp.swift; sourceTree = "<group>"; };
 		597221BE29295CCA00193A9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,7 +118,7 @@
 		59DEE502295E7C940002F822 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		59DEE504295E81B90002F822 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		59DEE506295E82BA0002F822 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		59DEE508295E882A0002F822 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		59DEE508295E882A0002F822 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; tabWidth = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +153,7 @@
 			children = (
 				59DEE4C529592CAD0002F822 /* OnBoardingViewModel.swift */,
 				59DEE4F9295D19870002F822 /* AuthViewModel.swift */,
+				59610A6A295F2CD90093C45D /* PostViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -157,6 +170,25 @@
 				59DEE508295E882A0002F822 /* PostCell.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		59610A67295F2BA70093C45D /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				59610A68295F2BBE0093C45D /* PostModel.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		59610A6F295FCBEB0093C45D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				59DEE506295E82BA0002F822 /* ProfileView.swift */,
+				59610A70295FCBFF0093C45D /* ProfileHeaderView.swift */,
+				59610A72295FD2C20093C45D /* ProfileTabBarView.swift */,
+				59610A74295FD78F0093C45D /* ProfilePostsView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		597221AE29295CC900193A9F = {
@@ -235,6 +267,7 @@
 		59D2EFBD29453C3C00E8EDCB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				59610A67295F2BA70093C45D /* Post */,
 				59DEE4F6295D11B50002F822 /* User */,
 				59DEE4F3295D116A0002F822 /* Auth */,
 				59DEE4D5295A04D90002F822 /* Navigation */,
@@ -245,9 +278,9 @@
 		59DEE4B62958CB770002F822 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				59610A6F295FCBEB0093C45D /* Profile */,
 				59DEE502295E7C940002F822 /* AppView.swift */,
 				59DEE504295E81B90002F822 /* FeedView.swift */,
-				59DEE506295E82BA0002F822 /* ProfileView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -315,6 +348,7 @@
 			children = (
 				59DEE4ED295D0CE90002F822 /* Network.swift */,
 				59DEE4F1295D0E880002F822 /* AuthService.swift */,
+				59610A65295F283D0093C45D /* PostService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -430,6 +464,7 @@
 			packageReferences = (
 				594578AE293D4C7C00EBB27F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				59DEE4FD295DD6680002F822 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				59610A6C295FBB730093C45D /* XCRemoteSwiftPackageReference "ProgressIndicatorView" */,
 			);
 			productRefGroup = 597221B829295CC900193A9F /* Products */;
 			projectDirPath = "";
@@ -481,6 +516,7 @@
 				59DEE4F5295D11750002F822 /* AuthModel.swift in Sources */,
 				59DEE4C829592E450002F822 /* OnBoardingPage.swift in Sources */,
 				59DEE4E9295A3C920002F822 /* ForgotPasswordStep4View.swift in Sources */,
+				59610A71295FCBFF0093C45D /* ProfileHeaderView.swift in Sources */,
 				59DEE4C029591B820002F822 /* ViewRouter.swift in Sources */,
 				59DEE4D22959F6840002F822 /* RegisterView.swift in Sources */,
 				59DEE505295E81B90002F822 /* FeedView.swift in Sources */,
@@ -488,13 +524,17 @@
 				59DEE4C629592CAD0002F822 /* OnBoardingViewModel.swift in Sources */,
 				5920A3052957DB7100B711A2 /* CustomButton.swift in Sources */,
 				59DEE503295E7C940002F822 /* AppView.swift in Sources */,
+				59610A6B295F2CD90093C45D /* PostViewModel.swift in Sources */,
 				59DEE509295E882A0002F822 /* PostCell.swift in Sources */,
+				59610A66295F283D0093C45D /* PostService.swift in Sources */,
 				59DEE4B32957E6F90002F822 /* CustomHeader.swift in Sources */,
 				5920A3032957D58500B711A2 /* TestView.swift in Sources */,
 				59DEE4BA29591ACE0002F822 /* OnBoardingView.swift in Sources */,
 				59DEE507295E82BA0002F822 /* ProfileView.swift in Sources */,
+				59610A69295F2BBE0093C45D /* PostModel.swift in Sources */,
 				59DEE4F2295D0E880002F822 /* AuthService.swift in Sources */,
 				59DEE501295DDC600002F822 /* CustomAlert.swift in Sources */,
+				59610A73295FD2C20093C45D /* ProfileTabBarView.swift in Sources */,
 				59DEE4FA295D19870002F822 /* AuthViewModel.swift in Sources */,
 				597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */,
 				59DEE4F8295D11C10002F822 /* UserModel.swift in Sources */,
@@ -504,6 +544,7 @@
 				59DEE4CC295941A70002F822 /* LoginView.swift in Sources */,
 				59DEE4DE295A1E260002F822 /* RegisterStep3View.swift in Sources */,
 				59DEE4BE29591B680002F822 /* Main.swift in Sources */,
+				59610A75295FD78F0093C45D /* ProfilePostsView.swift in Sources */,
 				59DEE4B52958BDF00002F822 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -856,6 +897,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		59610A6C295FBB730093C45D /* XCRemoteSwiftPackageReference "ProgressIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ProgressIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
 			};
 		};
 		59DEE4FD295DD6680002F822 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
