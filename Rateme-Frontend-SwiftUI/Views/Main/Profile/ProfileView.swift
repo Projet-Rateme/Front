@@ -8,29 +8,21 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var Post = PostViewModel()
+    @StateObject var postViewModel : PostViewModel
+    
     var body: some View {
         ZStack {
             Color("bgColor").ignoresSafeArea(.all)
             ScrollView {
                 VStack {
-                    ProfileHeaderView().ignoresSafeArea(.all)
+                    ProfileHeaderView().ignoresSafeArea(.all).environmentObject(AuthViewModel())
                     ProfileTabBarView()
-                    ProfilePostsView()
+                    ProfilePostsView(postViewModel: postViewModel)
                     Spacer()
                 }
             }.refreshable {
-                Post.fetchMyProfilePosts()
+                postViewModel.fetchMyProfilePosts()
             }
-        }
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ProfileView()
-            ProfileView().colorScheme(.dark)
         }
     }
 }

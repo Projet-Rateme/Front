@@ -28,6 +28,8 @@ class AuthViewModel : ObservableObject {
     var reset_password = ""
     var reset_confirmPassword = ""
     var message = ""
+    
+    
     @Published var currentUser : User?
     @Published var isAuthenticated : Bool = false
     @Published var isLoading = false
@@ -41,9 +43,35 @@ class AuthViewModel : ObservableObject {
     @Published var navigateToForgotPasswordStep4 = false
     @EnvironmentObject var viewRouter : ViewRouter
     
+    init () {
+        if let data = UserDefaults.standard.data(forKey: "currentUser") {
+            do {
+                let currentUser = try JSONDecoder().decode(User.self, from: data)
+                self.currentUser = currentUser
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+//    func getCurrentUser() {
+//        AuthService().getCurrentUser() { result in
+//            switch result {
+//            case.success(let data):
+//                DispatchQueue.main.async() {
+//                    if (data?.statusCode == 200) {
+//                        self.currentUser = data?.user!
+//                    }
+//                    self.isLoading = false
+//                    self.message = data?.message ?? ""
+//                }
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//                self.alert = false
+//            }
+//        }
+//    }
     func login(){
-        //let defaults = UserDefaults.standard
-        
         AuthService().login(body: LoginRequestBody(email: login_email, password: login_password)){ result in
             switch result {
                 
@@ -51,9 +79,28 @@ class AuthViewModel : ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                     if data?.statusCode == 200 {
                         self.isAuthenticated = true
-                        self.currentUser = data?.user!
                         self.alert = false
                         self.isLoading = false
+                        UserDefaults.standard.set(data?.token, forKey: "token")
+                        if data?.token == UserDefaults.standard.string(forKey: "token") {
+                            UserDefaults.standard.set(self.isAuthenticated, forKey: "isAuthenticated")
+                            do {
+                                let data = try JSONEncoder().encode(data?.user!)
+                                UserDefaults.standard.set(data, forKey: "currentUser")
+                            } catch {
+                                print(error)
+                            }
+                            
+                            if let data = UserDefaults.standard.data(forKey: "currentUser") {
+                                do {
+                                    let currentUser = try JSONDecoder().decode(User.self, from: data)
+                                    self.currentUser = currentUser
+                                    print(self.currentUser!)
+                                } catch {
+                                    print(error)
+                                }
+                            }
+                        }
                     }
                     self.message = data?.message ?? ""
                     self.alert = false
@@ -188,6 +235,27 @@ class AuthViewModel : ObservableObject {
             case .failure(let error):
                 print(error.localizedDescription)
                 self.alert = false
+            }
+        }
+    }
+    
+    func logout(){
+        AuthService().logout(){ result in
+            switch result {
+            case.success(let data):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+                    if data?.statusCode == 200 {
+                        self.isAuthenticated = false
+                        self.alert = false
+                        self.isLoading = false
+                        UserDefaults.standard.set(nil, forKey: "currentUser")
+                        UserDefaults.standard.set(self.isAuthenticated, forKey: "isAuthenticated")
+                    }
+                    self.message = data?.message ?? ""
+                }
+                
+            case.failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

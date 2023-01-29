@@ -36,6 +36,7 @@ struct AuthView: View {
                                 Auth.alert = true
                                 Auth.isLoading = true
                                 Auth.login()
+                                
                             }
                         }, label: {})
                             .buttonStyle(CustomButton(text: "Sign in", isPrimary: true, color: "PrimaryColor"))
@@ -81,12 +82,3 @@ struct AuthView: View {
         }
     }
 }
-
-//struct AuthView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            AuthView()
-//            AuthView().colorScheme(.dark)
-//        }
-//    }
-//}

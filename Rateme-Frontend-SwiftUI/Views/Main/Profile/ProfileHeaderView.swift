@@ -9,6 +9,20 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     @EnvironmentObject var Auth : AuthViewModel
+    @EnvironmentObject var viewRouter : ViewRouter
+    
+    var currentUser : User?
+    
+    init () {
+        if let data = UserDefaults.standard.data(forKey: "currentUser") {
+            do {
+                let currentUser = try JSONDecoder().decode(User.self, from: data)
+                self.currentUser = currentUser
+            } catch {
+                print(error)
+            }
+        }
+    }
     var body: some View {
         VStack(spacing: 100) {
             VStack {
@@ -37,11 +51,11 @@ struct ProfileHeaderView: View {
             
             VStack(spacing: 10) {
                 HStack {
-                    Text(Auth.currentUser?.firstname ?? "")
+                    Text(self.currentUser?.firstname ?? "")
                         .foregroundColor(Color("TextColor"))
                         .fontWeight(.bold)
                         .font(Font.system(size: 20))
-                    Text(Auth.currentUser?.lastname ?? "")
+                    Text(self.currentUser?.lastname ?? "")
                         .foregroundColor(Color("TextColor"))
                         .fontWeight(.bold)
                         .font(Font.system(size: 20))

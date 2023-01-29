@@ -12,7 +12,20 @@ struct Post : Codable {
     var content : String
     var image : String
     var user : User
-    var likes : [User]
+    var likes : [String]
+    var comments : [Comment]
+}
+
+struct fetchPostCommentsResponse : Codable {
+    let statusCode : Int
+    let message : String
+    let post : Post
+}
+
+struct likePostResponse : Decodable {
+    let message : String
+    let statusCode : Int
+    let data : Post
 }
 
 struct fetchPostsResponse : Decodable {

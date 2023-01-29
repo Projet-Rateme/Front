@@ -11,8 +11,8 @@ import SwiftUI
 class ViewRouter: ObservableObject {
     
     init() {
-        if !UserDefaults.standard.bool(forKey: "didLaunchBefore") {
-            UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+        if !UserDefaults.standard.bool(forKey: "openedBefore") {
+            UserDefaults.standard.set(true, forKey: "openedBefore")
         currentPage = .onBoardingView
         } else {
             currentPage = .loginView

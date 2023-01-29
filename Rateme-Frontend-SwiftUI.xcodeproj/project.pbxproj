@@ -22,6 +22,12 @@
 		597221CD29295CCA00193A9F /* Rateme_Frontend_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221CC29295CCA00193A9F /* Rateme_Frontend_SwiftUITests.swift */; };
 		597221D729295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221D629295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift */; };
 		597221D929295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */; };
+		59A2102229635827004943C2 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2102129635827004943C2 /* CommentModel.swift */; };
+		59A21025296370B6004943C2 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A21024296370B6004943C2 /* CommentView.swift */; };
+		59A21027296370DE004943C2 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A21026296370DE004943C2 /* CommentCell.swift */; };
+		59A21029296372D2004943C2 /* AddNewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A21028296372D2004943C2 /* AddNewCommentView.swift */; };
+		59A2102B296378BF004943C2 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2102A296378BF004943C2 /* CommentService.swift */; };
+		59A2102D29637A4B004943C2 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2102C29637A4B004943C2 /* CommentViewModel.swift */; };
 		59DEE4B32957E6F90002F822 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4B22957E6F90002F822 /* CustomHeader.swift */; };
 		59DEE4B52958BDF00002F822 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4B42958BDEF0002F822 /* CustomTextField.swift */; };
 		59DEE4BA29591ACE0002F822 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DEE4B929591ACE0002F822 /* OnBoardingView.swift */; };
@@ -90,6 +96,13 @@
 		597221D229295CCA00193A9F /* Rateme-Frontend-SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rateme-Frontend-SwiftUIUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		597221D629295CCA00193A9F /* Rateme_Frontend_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		597221D829295CCA00193A9F /* Rateme_Frontend_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rateme_Frontend_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		59A2101F29634505004943C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59A2102129635827004943C2 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		59A21024296370B6004943C2 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		59A21026296370DE004943C2 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		59A21028296372D2004943C2 /* AddNewCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCommentView.swift; sourceTree = "<group>"; };
+		59A2102A296378BF004943C2 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		59A2102C29637A4B004943C2 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		59DEE4B22957E6F90002F822 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		59DEE4B42958BDEF0002F822 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		59DEE4B929591ACE0002F822 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
@@ -154,6 +167,7 @@
 				59DEE4C529592CAD0002F822 /* OnBoardingViewModel.swift */,
 				59DEE4F9295D19870002F822 /* AuthViewModel.swift */,
 				59610A6A295F2CD90093C45D /* PostViewModel.swift */,
+				59A2102C29637A4B004943C2 /* CommentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -168,6 +182,7 @@
 				59DEE4C729592E450002F822 /* OnBoardingPage.swift */,
 				59DEE500295DDC600002F822 /* CustomAlert.swift */,
 				59DEE508295E882A0002F822 /* PostCell.swift */,
+				59A21026296370DE004943C2 /* CommentCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -214,6 +229,7 @@
 		597221B929295CC900193A9F /* Rateme-Frontend-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				59A2101F29634505004943C2 /* Info.plist */,
 				59DEE4EC295D0CB20002F822 /* Services */,
 				5920A3012957D57100B711A2 /* Utils */,
 				5920A3002954ACED00B711A2 /* ViewModels */,
@@ -264,9 +280,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		59A2102029635819004943C2 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				59A2102129635827004943C2 /* CommentModel.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		59A21023296370A0004943C2 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				59A21024296370B6004943C2 /* CommentView.swift */,
+				59A21028296372D2004943C2 /* AddNewCommentView.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		59D2EFBD29453C3C00E8EDCB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				59A2102029635819004943C2 /* Comment */,
 				59610A67295F2BA70093C45D /* Post */,
 				59DEE4F6295D11B50002F822 /* User */,
 				59DEE4F3295D116A0002F822 /* Auth */,
@@ -278,6 +312,7 @@
 		59DEE4B62958CB770002F822 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				59A21023296370A0004943C2 /* Comments */,
 				59610A6F295FCBEB0093C45D /* Profile */,
 				59DEE502295E7C940002F822 /* AppView.swift */,
 				59DEE504295E81B90002F822 /* FeedView.swift */,
@@ -349,6 +384,7 @@
 				59DEE4ED295D0CE90002F822 /* Network.swift */,
 				59DEE4F1295D0E880002F822 /* AuthService.swift */,
 				59610A65295F283D0093C45D /* PostService.swift */,
+				59A2102A296378BF004943C2 /* CommentService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -523,22 +559,28 @@
 				59DEE4CE2959EFD30002F822 /* AuthView.swift in Sources */,
 				59DEE4C629592CAD0002F822 /* OnBoardingViewModel.swift in Sources */,
 				5920A3052957DB7100B711A2 /* CustomButton.swift in Sources */,
+				59A21027296370DE004943C2 /* CommentCell.swift in Sources */,
+				59A2102D29637A4B004943C2 /* CommentViewModel.swift in Sources */,
 				59DEE503295E7C940002F822 /* AppView.swift in Sources */,
 				59610A6B295F2CD90093C45D /* PostViewModel.swift in Sources */,
 				59DEE509295E882A0002F822 /* PostCell.swift in Sources */,
+				59A21025296370B6004943C2 /* CommentView.swift in Sources */,
 				59610A66295F283D0093C45D /* PostService.swift in Sources */,
 				59DEE4B32957E6F90002F822 /* CustomHeader.swift in Sources */,
 				5920A3032957D58500B711A2 /* TestView.swift in Sources */,
 				59DEE4BA29591ACE0002F822 /* OnBoardingView.swift in Sources */,
 				59DEE507295E82BA0002F822 /* ProfileView.swift in Sources */,
 				59610A69295F2BBE0093C45D /* PostModel.swift in Sources */,
+				59A2102B296378BF004943C2 /* CommentService.swift in Sources */,
 				59DEE4F2295D0E880002F822 /* AuthService.swift in Sources */,
 				59DEE501295DDC600002F822 /* CustomAlert.swift in Sources */,
 				59610A73295FD2C20093C45D /* ProfileTabBarView.swift in Sources */,
+				59A21029296372D2004943C2 /* AddNewCommentView.swift in Sources */,
 				59DEE4FA295D19870002F822 /* AuthViewModel.swift in Sources */,
 				597221BB29295CC900193A9F /* Rateme_Frontend_SwiftUIApp.swift in Sources */,
 				59DEE4F8295D11C10002F822 /* UserModel.swift in Sources */,
 				59DEE4E5295A3C720002F822 /* ForgotPasswordStep1View.swift in Sources */,
+				59A2102229635827004943C2 /* CommentModel.swift in Sources */,
 				59DEE4EE295D0CE90002F822 /* Network.swift in Sources */,
 				59DEE4D42959F9050002F822 /* Views.swift in Sources */,
 				59DEE4CC295941A70002F822 /* LoginView.swift in Sources */,
@@ -702,6 +744,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Rateme-Frontend-SwiftUI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Rateme-Frontend-SwiftUI/Info.plist";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = teeesst;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -738,6 +782,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Rateme-Frontend-SwiftUI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Rateme-Frontend-SwiftUI/Info.plist";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = teeesst;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

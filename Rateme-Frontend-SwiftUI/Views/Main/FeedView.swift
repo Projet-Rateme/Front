@@ -9,55 +9,22 @@ import SwiftUI
 
 struct FeedView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var Post = PostViewModel()
+    @StateObject var postViewModel : PostViewModel
+    @EnvironmentObject var Auth : AuthViewModel
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("bgColor").ignoresSafeArea(.all)
                 ScrollView {
-                    ScrollView(.horizontal,showsIndicators: false) {
-                    HStack {
-                            Text("All")
-                                .foregroundColor(Color(.white))
-                                .fontWeight(.semibold)
-                                .frame(width: UIScreen.main.bounds.width / 5, height: UIScreen.main.bounds.width / 15)
-                                .background(Color("PrimaryColor"))
-                                .cornerRadius(15)
-                            Text("Profiles")
-                                .foregroundColor(Color("TextColor"))
-                                .fontWeight(.semibold)
-                                .frame(width: UIScreen.main.bounds.width / 5, height: UIScreen.main.bounds.width / 15)
-                                .cornerRadius(15)
-                                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("PrimaryColor"), lineWidth: 2))
-                            Text("Photos")
-                                .foregroundColor(Color("TextColor"))
-                                .fontWeight(.semibold)
-                                .frame(width: UIScreen.main.bounds.width / 5, height: UIScreen.main.bounds.width / 15)
-                                .cornerRadius(15)
-                                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("PrimaryColor"), lineWidth: 2))
-                            Text("Videos")
-                                .foregroundColor(Color("TextColor"))
-                                .fontWeight(.semibold)
-                                .frame(width: UIScreen.main.bounds.width / 5, height: UIScreen.main.bounds.width / 15)
-                                .cornerRadius(15)
-                                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("PrimaryColor"), lineWidth: 2))
-                            Text("Funny")
-                                .foregroundColor(Color("TextColor"))
-                                .fontWeight(.semibold)
-                                .frame(width: UIScreen.main.bounds.width / 5, height: UIScreen.main.bounds.width / 15)
-                                .cornerRadius(15)
-                                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color("PrimaryColor"), lineWidth: 2))
-                    }.padding()
-                            
-                    }
                     LazyVStack {
-                        ForEach(Post.posts,id: \._id) { item in
-                            PostCell(name: item.user.firstname, profilePicture: "https://thispersondoesnotexist.com/image", imageUrl: item.image, text: item.content)
+                        ForEach(postViewModel.posts,id: \._id) { item in
+                            PostCell(post: item, postViewModel: postViewModel, likes: item.likes)
                         }
                     }
                     
                 }
-            }.toolbar {
+            }
+            .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button (action: {})
                     {
@@ -71,10 +38,9 @@ struct FeedView: View {
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button (action: {
-//                        self.presentationMode.wrappedValue.dismiss()
-                        Post.fetchPosts()
-                        print(Post.posts.count)
-                        
+                        Auth.logout()
+                        Auth.alert = true
+                        Auth.isLoading = true
                     })
                     {
                         HStack {
@@ -84,12 +50,11 @@ struct FeedView: View {
                     .foregroundColor(Color("TextColor"))
                 }
             }.refreshable {
-                Post.fetchPosts()
+                postViewModel.fetchPosts()
             }
-        }.onAppear(perform: {
-            Post.fetchPosts()
-            print(Post.posts.count)
-    })
+        }
+        .blur(radius: Auth.alert ? 2 : 0)
+            .customAlert(isPresented: $Auth.alert, hasIndicator: $Auth.isLoading, title: "Logging out", placeholder: "Placeholder")
     }
 }
 

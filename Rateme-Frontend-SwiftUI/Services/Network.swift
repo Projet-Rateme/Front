@@ -14,6 +14,8 @@ struct Network {
     // MARK : AUTH Routes
     
     static let LoginURL = BASE_URL + "/login"
+    static let LogoutURL = BASE_URL + "/logout"
+    static let currentUserURL = BASE_URL + "/current"
     static let RegisterURL = BASE_URL + "/register"
     static let SendEmail = BASE_URL + "/sendemail"
     static let VerifyEmail = BASE_URL + "/verifyemail"
@@ -25,4 +27,5 @@ struct Network {
     
     static let fetchPostsURL = BASE_URL + "/posts"
     static let fetchMyProfilePostsURL = BASE_URL + "/myprofileposts"
+    static let postActionsURL = BASE_URL + "/post"
 }

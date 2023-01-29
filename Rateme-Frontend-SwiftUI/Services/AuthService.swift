@@ -12,6 +12,8 @@ struct AuthService {
     
     static let shared = AuthService()
     
+    var token = UserDefaults.standard.string(forKey: "token")
+    
     func login(body: LoginRequestBody, completion: @escaping(Result<LoginResponse?, AuthError>) -> Void) {
         AF.request("\(Network.LoginURL)",
                    method: .post,
@@ -27,10 +29,34 @@ struct AuthService {
                 let responseData = Data(res.data!)
                 do {
                     let parsedData = try JSONDecoder().decode(LoginResponse.self, from: responseData)
-                    UserDefaults.standard.set(parsedData.token, forKey: "token")
                     completion(.success(parsedData))
-                    print(parsedData.message)
-                    print(parsedData.statusCode)
+                    UserDefaults.standard.set(parsedData.token, forKey: "token")
+                } catch {print(error)}
+                
+                
+            case let .failure(err):
+                debugPrint(err)
+                completion(.failure(.custom(errorMessage: err.localizedDescription)))
+            }
+        }
+    }
+    
+    func getCurrentUser(completion: @escaping(Result<LoginResponse?, AuthError>) -> Void) {
+        AF.request("\(Network.currentUserURL)",
+                   method: .get,
+                   encoding: JSONEncoding.default,
+                   headers: HTTPHeaders([
+                    "Authorization": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
+                ]))
+        .validate(contentType: ["application/json"])
+        .responseData { res in
+            switch res.result {
+                
+            case .success:
+                let responseData = Data(res.data!)
+                do {
+                    let parsedData = try JSONDecoder().decode(LoginResponse.self, from: responseData)
+                    completion(.success(parsedData))
                 } catch {print(error)}
                 
                 
@@ -45,7 +71,8 @@ struct AuthService {
         AF.request("\(Network.SendEmail)",
                    method: .post,
                    parameters: ["email": body.email],
-                   encoding: JSONEncoding.default)
+                   encoding: JSONEncoding.default
+                   )
         .validate(contentType: ["application/json"])
         .responseData { res in
             switch res.result {
@@ -56,7 +83,6 @@ struct AuthService {
                     let parsedData = try JSONDecoder().decode(sendEmailResponse.self, from: responseData)
                     completion(.success(parsedData))
                     print(parsedData.message)
-                    print(parsedData.statusCode)
                 } catch {print(error)}
                 
                 
@@ -83,7 +109,6 @@ struct AuthService {
                     let parsedData = try JSONDecoder().decode(codeVerificationResponse.self, from: responseData)
                     completion(.success(parsedData))
                     print(parsedData.message)
-                    print(parsedData.statusCode)
                 } catch {print(error)}
                 
                 
@@ -115,7 +140,6 @@ struct AuthService {
                     let parsedData = try JSONDecoder().decode(RegisterResponse.self, from: responseData)
                     completion(.success(parsedData))
                     print(parsedData.message)
-                    print(parsedData.statusCode)
                 } catch {print(error)}
                 
                 
@@ -141,7 +165,6 @@ struct AuthService {
                     let parsedData = try JSONDecoder().decode(forgotPasswordResponse.self, from: responseData)
                     completion(.success(parsedData))
                     print(parsedData.message)
-                    print(parsedData.statusCode)
                 } catch {print(error)}
                 
                 
@@ -167,7 +190,6 @@ struct AuthService {
                     let parsedData = try JSONDecoder().decode(forgotPasswordCodeResponse.self, from: responseData)
                     completion(.success(parsedData))
                     print(parsedData.message)
-                    print(parsedData.statusCode)
                 } catch {print(error)}
                 
                 
@@ -195,7 +217,6 @@ struct AuthService {
                     let parsedData = try JSONDecoder().decode(resetPasswordResponse.self, from: responseData)
                     completion(.success(parsedData))
                     print(parsedData.message)
-                    print(parsedData.statusCode)
                 } catch {print(error)}
                 
                 
@@ -205,6 +226,33 @@ struct AuthService {
             }
         }
         
+    }
+    
+    func logout(completion: @escaping(Result<LoginResponse?, AuthError>) -> Void) {
+        AF.request("\(Network.LogoutURL)",
+                   method: .get,
+                   encoding: JSONEncoding.default,
+                   headers: HTTPHeaders([
+                    "Authorization": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
+                ]))
+        .validate(contentType: ["application/json"])
+        .responseData { res in
+            switch res.result {
+                
+            case .success:
+                let responseData = Data(res.data!)
+                do {
+                    let parsedData = try JSONDecoder().decode(LoginResponse.self, from: responseData)
+                    completion(.success(parsedData))
+                    print(parsedData.message)
+                } catch {print(error)}
+                
+                
+            case let .failure(err):
+                debugPrint(err)
+                completion(.failure(.custom(errorMessage: err.localizedDescription)))
+            }
+        }
     }
 
 }
